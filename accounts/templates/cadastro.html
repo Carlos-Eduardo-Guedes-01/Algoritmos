@@ -1,42 +1,26 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-    <title>Cadastro de Super Usuário</title>
-</head>
-<body>
-<main>
-  <div class='logo'><img src="{% static 'img/logo.jpg' %}" alt="Logo" width="105" height="100" class="logo"></div>
-  <div class="rbc">RBC</div>
-  <div class="adm"><h1>Área do Administrador</h1></div>
-  <div class="empresas"><h3>Empresas</h3></div>
-  <div class="pacotes"><h3>Pacotes</h3></div>
-  <div class="voltar"><h3>Voltar</h3></div>
-  
-  <div class="header" style="padding-top: 0.7%;">Cadastro Administrador</div>
-</main>
+{% extends 'base_adm.html'%}
+{% block content %}
 {% if msg %}
 <div style="margin-top: 1.1%;position: absolute;font-size: 14pt;font-weight: bold;" class="alert {{class}}">
    {{msg}}
 </div>
 {% endif %}
-<section>
 
+<section>
   <div>
   <form action="{% url 'accounts:cadastrando' %}" method="POST" enctype="multipart/form-data" class="form">
+    
     {% csrf_token %}  
+    <center>
     <input type="text" name="user" id="nome" class="campo" placeholder="Usuário"required><br>
     <input type="text" name="nome" id="nome" class="campo" placeholder="Nome"required><br>
     <input type='text' name="email" id="nome" class="campo" placeholder="E-mail"required><br>
     <input type="password"name="senha" id="nome" class="campo" placeholder="Senha"required><br>
-    <input type="password" name="senha_repeat" id="nome" class="campo" placeholder="Repetir Senha" required><br>
-    <button type="submit" class="button">Cadastrar</button>
+    <input type="password" name="senha_repeat" id="nome" class="campo" placeholder="Repetir Senha" required><br></center>
+    <center><button type="submit" class="button">Cadastrar</button></center>
   </form>
 </section>
 </div>
-</body>
-</html>
+
+{% endblock %}
+

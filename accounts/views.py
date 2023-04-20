@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from .models import *
+def inicio(request):
+    data={}
+    data['link']="{% url 'accounts:cadastro_template'%}"
+    data['nome']='Cadastrar ADM'
+    data['titulo']='Página do ADM'
+    return render(request,'../../accounts/templates/inicio.html',data)
 def cadastro(request):
-    return render(request,'../../accounts/templates/cadastro.html')
+    data={}
+    data['link']="{% url 'accounts:index'%}"
+    data['nome']='Voltar'
+    data['titulo']='Cadastro Administrador'
+    return render(request,'../../accounts/templates/cadastro.html',data)
 def cadastrando(request):
-    print(request.POST.get('email'))
-    print(request.POST.get('senha'))
-    print(request.POST.get('nome'))
+    titulo='Cadastro Administrador'
     data={}
     try:
         usuario_aux = User.objects.get(username=request.POST['user'])
