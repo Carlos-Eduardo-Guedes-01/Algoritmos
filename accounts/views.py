@@ -2,13 +2,13 @@ from django.shortcuts import render
 from .models import *
 def inicio(request):
     data={}
-    data['link']="{% url 'accounts:cadastro_template'%}"
+    data['link_cad']="{% url 'accounts:cadastro_template'%}"
     data['nome']='Cadastrar ADM'
     data['titulo']='Página do ADM'
     return render(request,'../../accounts/templates/inicio.html',data)
 def cadastro(request):
     data={}
-    data['link']="{% url 'accounts:index'%}"
+    data['link_form']="{% url 'accounts:index'%}"
     data['nome']='Voltar'
     data['titulo']='Cadastro Administrador'
     return render(request,'../../accounts/templates/cadastro.html',data)

@@ -15,8 +15,12 @@
   <div class="adm"><h1>Área do Administrador</h1></div>
   <div class="empresas"><h3>Empresas</h3></div>
   <div class="pacotes"><h3>Pacotes</h3></div>
-  <div class="voltar"><a href={{link}}><h3>{{nome}}</h3></a></div>
-  
+  {% if link_cad %}
+  <div class="voltar"><a href="{% url 'accounts:cadastro_template'%}"><h3>{{nome}}</h3></a></div>
+  {% endif %}
+  {% if link_form%}
+  <div class="voltar"><a href="{% url 'accounts:index'%}"><h3>{{nome}}</h3></a></div>
+{% endif %}
   <div class="header" style="padding-top: 0.7%;">{{titulo}}</div>
 </main>
 {% block content %}
