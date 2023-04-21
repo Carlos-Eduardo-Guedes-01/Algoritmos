@@ -1,0 +1,25 @@
+{% extends 'base_adm.html'%}
+{% block content %}
+{% if msg %}
+<div style="margin-top: 1.1%;position: absolute;font-size: 14pt;font-weight: bold;" class="alert {{class}}">
+   {{msg}}
+</div>
+{% endif %}
+
+<section>
+  <div>
+  <form action="{% url 'produto:cad_prod' %}" method="POST" enctype="multipart/form-data" class="form">
+    
+    {% csrf_token %}  
+    <center>
+      {{form.nome_produto}}<br>{{form.empresa}}<br>
+      <label class='label' for="{{ form.secao.id_for_label }}">{{ form.secao.label }}</label><br>
+      {{form.secao}}<br>
+      {{form.imagem}}
+    </center>
+    <center><button type="submit" class="button">Cadastrar</button></center>
+  </form>
+</section>
+</div>
+
+{% endblock %}

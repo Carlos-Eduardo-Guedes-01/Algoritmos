@@ -1,3 +1,8 @@
 from django.contrib import admin
-from .models import *
+import sys
+sys.path.append('/produto/')
+from produto.models import *
+from accounts.models import *
 admin.site.register(administrador)
+admin.site.register(produtos)
+admin.site.register(secao)

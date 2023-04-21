@@ -6,7 +6,7 @@
     <center><img src="{% static 'img/empresas.png' %}" width="240" height="200"><br><p class="adc_item">Adicionar Empresa</p></center>
 </div>
 <div class='cards'>
-    <center><img src="{% static 'img/produtos.png' %}" width="240" height="200"><br><p class="adc_item">Adicionar Produtos</p></center>
+    <center><a href="{% url 'produto:cad_prod' %}"><img src="{% static 'img/produtos.png' %}" width="240" height="200"><br><p class="adc_item">Adicionar Produtos</p></a></center>
 </div>
 </div>
 {% endblock %}
