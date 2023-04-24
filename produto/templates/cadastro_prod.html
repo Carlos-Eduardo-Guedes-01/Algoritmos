@@ -1,4 +1,5 @@
 {% extends 'base_adm.html'%}
+{% load static %}
 {% block content %}
 {% if msg %}
 <div style="margin-top: 1.1%;position: absolute;font-size: 14pt;font-weight: bold;" class="alert {{class}}">
@@ -12,14 +13,44 @@
     
     {% csrf_token %}  
     <center>
-      {{form.nome_produto}}<br>{{form.empresa}}<br>
+      {{form.nome_produto}}<br>
+      {{form.empresa}}<br>
+      <!-- chamando modal -->
+      <div class="preco">{{form.preco}}
+        <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><img src="{% static 'img/add.png' %}" alt="add" width="20" height="20" class="align-baseline"></button>
+         <br>
+      </div><br>
       <label class='label' for="{{ form.secao.id_for_label }}">{{ form.secao.label }}</label><br>
       {{form.secao}}<br>
       {{form.imagem}}
     </center>
     <center><button type="submit" class="button">Cadastrar</button></center>
   </form>
+  <center>
+   <!--JANELA MODAL-->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Adicionar Preço</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'produto:cad-preco' %}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <div class="mb-3">
+              {{formpreco.valor}}
+              <div class="modal-footer">
+                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
 </section>
 </div>
-
 {% endblock %}
