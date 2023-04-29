@@ -3,8 +3,7 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 12pt;
 }
-div.container-fluid{
-}
+
 div.header h3{
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
@@ -68,14 +67,14 @@ htlm,body{
 /*Nome da empresa */
 main .rbc{
     position: absolute;
-    top: 60%;
+    top: 67%;
     left: 0.5%;
     font-size: 20pt;
 }
 main .logo{
 position: absolute;
-left: -9px;
-margin-top: -2%;
+left: -5px;
+margin-top: -1.5%;
 }
 /* Botão de voltar */
 .voltar{
@@ -237,7 +236,7 @@ position: relative;
 max-width: max-content;
 justify-content: center;
 display: flex;
-margin: 0 20%;
+margin: 0 10%;
 width:40vw;
 
 font-family: 'Inter';

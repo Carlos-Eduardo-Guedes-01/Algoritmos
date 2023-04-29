@@ -14,7 +14,7 @@ class produtos(models.Model):
     secao=models.ForeignKey(secao,on_delete=models.CASCADE,verbose_name='Seção',default='Informe a Seção')
     imagem=models.ImageField(upload_to='produto/media', blank=True)
     empresa=models.CharField(max_length=255)
-    preco=models.ForeignKey(preco, on_delete=models.CASCADE, null=True)
+    preco=models.ForeignKey(preco, on_delete=models.CASCADE, null=True,default='Informe a Preço')
     def __str__(self) -> str:
         return self.nome_produto
     
