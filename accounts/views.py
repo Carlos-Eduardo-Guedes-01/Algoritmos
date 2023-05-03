@@ -5,9 +5,11 @@ def inicio(request):
     data['link_cad']="{% url 'accounts:cadastro_template'%}"
     data['nome']='Cadastrar ADM'
     data['titulo']='Página do ADM'
+    data['title']='ADM Principal'
     return render(request,'../../accounts/templates/inicio.html',data)
 def cadastro(request):
     data={}
+    data['title']='Cadastro Administrador'
     data['link_form']="{% url 'accounts:index'%}"
     data['nome']='Voltar'
     data['titulo']='Cadastro Administrador'

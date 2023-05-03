@@ -6,6 +6,7 @@ from .models import preco
 import imghdr
 def cad_prod(request):
     data={}
+    data['title']='Cadastro de Produtos'
     if(request.POST):
         data['form']=ProdutoForm(request.POST, request.FILES)
         if(data['form'].is_valid()):
@@ -31,6 +32,7 @@ def cad_prod(request):
     return render(request,'../../produto/templates/cadastro_prod.html',data)
 def cad_preco(request):
     data={}
+    data['title']='Cadastro de Produtos'
     if(request.POST):
         data['formpreco']=PrecoForm(request.POST)
         precos=request.POST.get('valor')
@@ -53,11 +55,3 @@ def cad_preco(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Produtos'
     return render(request,'../../produto/templates/cadastro_prod.html',data)
-'''def autocomplete(request):
-    if 'term' in request.GET:
-        prod = preco.objects.filter(nome__contains=request.GET.get('term'))
-        nomes=list()
-        for produto in prod:
-            nomes.append(preco.valor)
-        return JsonResponse(nomes, safe=False)
-    return HttpResponse(prod)'''
