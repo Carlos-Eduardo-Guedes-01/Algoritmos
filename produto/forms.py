@@ -13,6 +13,7 @@ class ProdutoForm(forms.ModelForm):
             'empresa':forms.TextInput(attrs={
                 'class':'campo','placeholder':'Empresa Pertencente','style':'margin-top:0;'}),
             'imagem':forms.FileInput(attrs={ 'class': 'campo','style':'padding-bottom:0.5%;padding-top:0.4%;'}),
+            'empresa':forms.Select(attrs={'class': 'campo'})
         }
 class PrecoForm(forms.ModelForm):
     class Meta:
