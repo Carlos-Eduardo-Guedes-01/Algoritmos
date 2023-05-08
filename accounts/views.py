@@ -37,4 +37,8 @@ def cadastrando(request):
         else:
             data['msg'] = 'Senhas incompatíveis.'
             data['class'] = 'alert-danger'''
+    data['title']='Cadastro Administrador'
+    data['link_form']="{% url 'accounts:index'%}"
+    data['nome']='Voltar'
+    data['titulo']='Cadastro Administrador'
     return render(request,'../../accounts/templates/cadastro.html',data)

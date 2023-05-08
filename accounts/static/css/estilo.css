@@ -140,8 +140,12 @@ margin-top: -1.5%;
     color: #000000;
 
 }
+div.preco{
+    width: 100%;
+}
 /* Cabeçalho do ADM */
-main.main{
+main{
+    position: relative;
     flex-wrap: wrap;
     height: 20%;
 }
@@ -165,8 +169,9 @@ main.main{
 
 /* Cadastro de ADM */
 section .form{
-    margin-top: 10%;
-    position: relative;
+    left: 33%;
+    /*margin-top: 8%;*/
+    position: absolute;
 }
 section .link{
     margin-top: 20%;
@@ -226,6 +231,7 @@ button.btn.btn-add{
 }
 select#id_preco{
     width: 360px;
+    margin-left: 15px;
 
 }
 

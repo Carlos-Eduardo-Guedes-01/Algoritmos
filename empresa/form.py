@@ -5,7 +5,7 @@ from empresa.models import Empresa
 class DadosForm(forms.ModelForm):
     class Meta:
         model = Empresa
-        fields = '__all__'
+        fields = ('nome_empresa','tipo','cidade','rua','bairro')
         labels={
             'nome_empresa':'',
             'tipo':'',
@@ -22,5 +22,6 @@ class DadosForm(forms.ModelForm):
                                             'placeholder':'Ex:Rua Adolfo John Terry'}),
             'bairro': forms.TextInput(attrs={ 'class': 'campo', 
                                             'placeholder':'Centro'}),
+            
             
         }

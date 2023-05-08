@@ -23,7 +23,7 @@ class Empresa(models.Model):
    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE,default='Informe a Cidade')
    rua = models.CharField(max_length=255)
    bairro = models.CharField(max_length=255)
-   quant_prod=models.IntegerField(blank=True)
+   quant_prod=models.IntegerField(blank=True, default=0)
    def __str__(self) -> str:
       return self.nome_empresa
    

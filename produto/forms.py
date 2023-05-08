@@ -8,7 +8,7 @@ class ProdutoForm(forms.ModelForm):
         widgets={
             'nome_produto':forms.TextInput(attrs={
                 'class':'campo','placeholder':'Nome do produto',}),
-            'secao':forms.Select(attrs={ 'class': 'campo','style':'width: 32%;margin-top:0;'}),
+            'secao':forms.Select(attrs={ 'class': 'campo','style':'width: 95%;margin-top:0;'}),
             'preco':forms.Select(attrs={'class':'campo','placeholder':'Preço do produto','style':'width:300;'}),
             'empresa':forms.TextInput(attrs={
                 'class':'campo','placeholder':'Empresa Pertencente','style':'margin-top:0;'}),
