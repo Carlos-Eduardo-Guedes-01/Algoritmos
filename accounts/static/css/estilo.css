@@ -42,6 +42,37 @@ a{
     margin-right: 1.5%;
     background: #D9D9D9;
 }
+
+.juntar .card-lista .text{
+    position: absolute;
+width: 1108px;
+height: 32px;
+left: 120px;
+top: 10px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 567;
+font-size: 34px;
+line-height: 41px;
+
+color: #000000;
+font-variation-settings: 'slnt' 0;
+}
+.juntar .card-lista{
+    position: absolute;
+    width: 100vw;
+    height: 120px;
+    left: 1px;
+    top: 90px;
+    background: #D9D9D9;
+}
+.juntar .card-lista .sub-text{
+    font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 29px;
+}
 div.cards{
     margin-right: 6%;
 }
@@ -109,8 +140,12 @@ margin-top: -1.5%;
     color: #000000;
 
 }
+div.preco{
+    width: 100%;
+}
 /* Cabeçalho do ADM */
-main.main{
+main{
+    position: relative;
     flex-wrap: wrap;
     height: 20%;
 }
@@ -134,8 +169,9 @@ main.main{
 
 /* Cadastro de ADM */
 section .form{
-    margin-top: 10%;
-    position: relative;
+    left: 33%;
+    /*margin-top: 8%;*/
+    position: absolute;
 }
 section .link{
     margin-top: 20%;
@@ -195,8 +231,10 @@ button.btn.btn-add{
 }
 select#id_preco{
     width: 360px;
+    margin-left: 15px;
 
 }
+
 section .campo{
     padding-left: 1%;
     margin-bottom: 2%;

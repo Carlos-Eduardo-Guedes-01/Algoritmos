@@ -2,13 +2,23 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from produto.forms import ProdutoForm,PrecoForm
 from .models import *
+import sys
+sys.path.append("")
+from empresa.models import *
 from .models import preco
 import imghdr
 def cad_prod(request):
     data={}
+    data['title']='Cadastro de Produtos'
+    my_object = Empresa.objects.get(pk=24)
     if(request.POST):
         data['form']=ProdutoForm(request.POST, request.FILES)
+        form=data['form']
         if(data['form'].is_valid()):
+            nome=Empresa.objects.get(id=request.POST.get('empresa'))
+            quant=nome.quant_prod
+            quant+=1
+            teste=Empresa.objects.filter(nome_empresa=nome).update(quant_prod=quant)
             produto = data['form'].save(commit=False)
             img = request.FILES
             dados_img = imghdr.what(img['imagem'])
@@ -23,7 +33,8 @@ def cad_prod(request):
             data['msg'] = 'Formulário inválido.'
             data['class'] = 'alert-danger'''
     else:
-        data['form']=ProdutoForm()
+        data['form'] = ProdutoForm(instance=my_object, initial={'empresa': my_object.nome_empresa})
+        #data['form']=ProdutoForm()
         data['formpreco']=PrecoForm()
     data['link_form']="{% url 'accounts:index'%}"
     data['nome']='Voltar'
@@ -31,6 +42,7 @@ def cad_prod(request):
     return render(request,'../../produto/templates/cadastro_prod.html',data)
 def cad_preco(request):
     data={}
+    data['title']='Cadastro de Produtos'
     if(request.POST):
         data['formpreco']=PrecoForm(request.POST)
         precos=request.POST.get('valor')
@@ -53,11 +65,3 @@ def cad_preco(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Produtos'
     return render(request,'../../produto/templates/cadastro_prod.html',data)
-'''def autocomplete(request):
-    if 'term' in request.GET:
-        prod = preco.objects.filter(nome__contains=request.GET.get('term'))
-        nomes=list()
-        for produto in prod:
-            nomes.append(preco.valor)
-        return JsonResponse(nomes, safe=False)
-    return HttpResponse(prod)'''
