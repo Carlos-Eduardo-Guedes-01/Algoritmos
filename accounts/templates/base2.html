@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
+    
+
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="header">
+        <div class="sup">
+            <div class="logo"><img src="{% static 'img/logo.png' %}" alt="Logo"></div>
+            <div class="text">Área do Administrador</div>
+            <div class="menu">
+                <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
+                <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
+                <div class="item"><a href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
+                <div class="item"><a>Opções Avançadas</a></div>
+            </div>
+            <!--MENU DO MEDIA QUERY-->
+            <div class="menu_resp">
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
+                    <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
+                    <div class="item"><a href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
+                    <div class="item"><a href="{% url 'accounts:index'%}">HOME</a></div>
+                    <div class="item"><a>Opções Avançadas</a></div>
+                </div>
+                  
+                <div id="main">
+                    <button class="openbtn" onclick="openNav()">&#9776;</button>
+                </div>
+                  
+            </div>
+            <!--FECHAMENTO DA DIV MEDIA QUERY-->
+        </div>
+        <div class="title">{{titulo}}</div>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+<script>
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginRight = "250px";
+  document.getElementById("main").style.display = "none";
+
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginRight = "0";
+  document.getElementById("main").style.display = "flex";
+}
+</script>
+</html>

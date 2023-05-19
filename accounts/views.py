@@ -9,10 +9,10 @@ def inicio(request):
     return render(request,'../../accounts/templates/inicio.html',data)
 def cadastro(request):
     data={}
-    data['title']='Cadastro Administrador'
+    data['title']='Cadastro ADM'
     data['link_form']="{% url 'accounts:index'%}"
     data['nome']='Voltar'
-    data['titulo']='Cadastro Administrador'
+    data['titulo']='Cadastro ADM'
     return render(request,'../../accounts/templates/cadastro.html',data)
 def cadastrando(request):
     titulo='Cadastro Administrador'
