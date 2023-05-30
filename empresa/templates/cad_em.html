@@ -2,22 +2,19 @@
 {% block content %}
 {% load static%}
 {% if msg %}
-  <div style="margin-top: 1.1%;position: absolute;font-size: 14pt;font-weight: bold;" class="alert {{class}}"></div>
+  <div class="alert {{class}}"></div>
    {{msg}}
 </div>
 {% endif %}
+<center>
+<div class="formulario">
+ 
+    <form action="{% url 'empresa:empresa_cad' %}" method="POST" enctype="multipart/form-data" class="form form-group">
+      {% csrf_token %}  
+      {{ form.as_p }}
+      <button type="submit" class="botao">Adicionar</button>
+    </form>
 
-<div class="container mt-7" style="margin-top: 170px;">
-  <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
-      <section>
-      <form action="{% url 'empresa:empresa_cad' %}" method="POST" enctype="multipart/form-data" class="form form-group">
-        {% csrf_token %}  
-        {{ form.as_p }}
-        <center><button type="submit" class="button">Adicionar</button></center>
-      </form>
-    </section>
-    </div>
-  </div>
 </div>
+</center>
 {% endblock %}

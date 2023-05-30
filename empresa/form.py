@@ -14,13 +14,13 @@ class DadosForm(forms.ModelForm):
             'bairro': ''
         }
         widgets = {
-            'nome_empresa': forms.TextInput(attrs={ 'class': 'campo offset-md-2', 
+            'nome_empresa': forms.TextInput(attrs={ 'class': 'campo', 
                                             'placeholder':'Nome da Empresa'}),
-            'tipo': forms.Select(attrs={ 'class': 'campo offset-md-2'}),
-            'cidade': forms.Select(attrs={ 'class': 'campo offset-md-2'}),
-            'rua': forms.TextInput(attrs={ 'class': 'campo offset-md-2', 
+            'tipo': forms.Select(attrs={ 'class': 'campo'}),
+            'cidade': forms.Select(attrs={ 'class': 'campo'}),
+            'rua': forms.TextInput(attrs={ 'class': 'campo', 
                                             'placeholder':'Ex:Rua Adolfo John Terry'}),
-            'bairro': forms.TextInput(attrs={ 'class': 'campo offset-md-2', 
+            'bairro': forms.TextInput(attrs={ 'class': 'campo', 
                                             'placeholder':'Ex:Centro'}),
             
             

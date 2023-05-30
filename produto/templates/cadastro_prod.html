@@ -6,13 +6,10 @@
    {{msg}}
 </div>
 {% endif %}
-
-<section style="margin-top: 100px;">
-  <div>
+  <div class="formulario">
   <form action="{% url 'produto:cad_prod' %}" method="POST" enctype="multipart/form-data" class="form">
     
     {% csrf_token %}  
-    <center>
       {{form.nome_produto}}<br>
       {{form.empresa}}<br>
       <!-- chamando modal -->
@@ -23,8 +20,8 @@
       <label style="color: black;" class='label' for="{{ form.secao.id_for_label }}">{{ form.secao.label }}</label><br>
       {{form.secao}}<br>
       {{form.imagem}}<br>
-    </center>
-    <center><button type="submit" class="button">Cadastrar</button></center>
+    
+    <center><button type="submit" class="botao">Cadastrar</button></center>
   </form>
   <center>
    <!--JANELA MODAL-->

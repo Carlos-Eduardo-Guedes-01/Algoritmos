@@ -2,6 +2,24 @@
     padding: 0;
     margin: 0;
 }
+a{
+    color: black;
+    text-decoration: none;
+}
+.voltar{
+    justify-content: space-evenly;
+    font-size: 14pt;
+    width: 10vw;
+    height: 7vh;
+    text-align: center;
+    background-color: #868586;
+    left: 12px;
+}
+.voltar a{
+    display: flex;
+    justify-content: center;
+    height: 5vh;
+}
 body{overflow-x: inherit;}
 a{
     color: #111;
@@ -26,6 +44,7 @@ a{
     text-shadow: 1px 1px 1px #000000;
 }
 .sup{
+    height: 13vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,14 +60,17 @@ a{
     justify-content: center;
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 7vh;
+    font-weight: bold;
     background-color: #29B9B0;
 }
 .menu{
     display: flex;
     gap: 20px;
 }
-.item{
+.item a{
+    text-decoration: none;
+    color: black;
     border-bottom: 1px solid black;
     transition: 0.2s;
 }
@@ -56,9 +78,11 @@ a{
     font-size: 19px;
 }
 .secao{
+    flex-direction: row;
     display: flex;
     width: 100%;
     align-items: center;
+    gap: 40px;
 }
 .secao .op{
     padding: 20px;
@@ -68,38 +92,130 @@ a{
     height: 260px;
     font-size: 18pt;
     text-align: center;
+    color: #000000;
+    text-decoration: none;
 }
 .secao .op img{
     width: 300px;
     height: 220px;
 }
+.secao a{
+    text-decoration: none;
+}
 .menu_resp{
     display: none;
 }
-@media (max-width:600px){
+.formulario .campo{
+    width: 32vw;
+    border-radius: 10px;
+    height: 5vh;
+    margin-bottom: 9px;
+    border: none;
+    background-color: #c2c2c2;
+    padding-left: 9px;
+}
+.formulario{
+    display: flex;
+    height: 60vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+
+}
+.formulario .botao{
+    width: 130px;
+    height: 30px;
+    font-size: 14pt;
+    border-radius: 10px;
+    border: none;
+    background-color: #c2c2c2;
+    
+    transition: 0.1s;
+}
+.formulario .botao:hover{
+    width: 145px;
+    height: 40px;
+    font-size: 16pt;
+    background-color: #aaaaaa;
+    font-weight: bold;
+}
+
+.lista{
+    display: flex;
+    gap: 20px;
+    background-color: #c2c2c2;
+    margin-top: 10px;
+    width: 100vw;   
+}
+.cabecalho{
+    background-color: #29B9B0;
+}
+.icone{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 10px;
+    
+}
+.icone2{
+    display: none;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    margin-right: 10px;
+}
+.dados{
+    width: 88vw;
+}
+@media (max-width: 790px){
     .menu{
         display: none;
     }
     .menu_resp{
         display: flex;
     }
-}
+    .formulario .campo{
+        width: 320px;
+        }
 
+}
 /* teste de css */
 
 @media (max-width:650px){
     .secao .op{
         width: 142px;
         height: 130px;
+        font-size: 14pt;
     }
     .secao .op img{
         width: 150px;
         height: 110px;
     }
 }
-.cabecalho{
-    background-color: #29B9B0;
+@media (max-width:500px){
+    .icone2{
+        display: flex;
+    }
+    .lista .img{
+        width: 60px;
+    }
+    .lista img{
+        width: 58px;
+        height: 59px;
+    }
+    .lista .h3{
+        margin-bottom: 0;
+        font-weight: bold;
+        font-size: 10pt;
+    }
+    .lista .sub-text{
+        font-size: 9pt;
+    }
+    .icone{
+        display: none;
+    }
 }
+
 
 
 
@@ -118,13 +234,13 @@ css do menu hamburguer
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    left: 0;
+    right: 0;
     background-color: white; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
   }
-  
+
   /* The sidebar links */
   .sidebar a {
     padding: 8px 8px 8px 32px;

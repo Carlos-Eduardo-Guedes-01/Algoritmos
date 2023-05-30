@@ -8,11 +8,11 @@ class ProdutoForm(forms.ModelForm):
         widgets={
             'nome_produto':forms.TextInput(attrs={
                 'class':'campo','placeholder':'Nome do produto',}),
-            'secao':forms.Select(attrs={ 'class': 'campo','style':'width: 95%;margin-top:0;'}),
-            'preco':forms.Select(attrs={'class':'campo','placeholder':'Preço do produto','style':'width:300;'}),
+            'secao':forms.Select(attrs={ 'class': 'campo'}),
+            'preco':forms.Select(attrs={'class':'campo','placeholder':'Preço do produto'}),
             'empresa':forms.TextInput(attrs={
-                'class':'campo','placeholder':'Empresa Pertencente','style':'margin-top:0;'}),
-            'imagem':forms.FileInput(attrs={ 'class': 'campo','style':'padding-bottom:0.5%;padding-top:0.4%;'}),
+                'class':'campo','placeholder':'Empresa Pertencente'}),
+            'imagem':forms.FileInput(attrs={ 'class': 'campo'}),
             'empresa':forms.Select(attrs={'class': 'campo'})
         }
 class PrecoForm(forms.ModelForm):
