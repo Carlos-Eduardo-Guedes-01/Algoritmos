@@ -1,0 +1,43 @@
+{% extends 'base2.html'%}
+{% load static %}
+{% block content %}
+{% if msg %}
+<div class="alert  {{class}}" role="alert">
+    {{msg}}
+</div>
+{% endif %}
+<center>
+<div class="formulario">
+ 
+    <form action="{% url 'empresa:alterando' %}" method="POST" enctype="multipart/form-data" class="form form-group">
+      {% csrf_token %}
+      <label for="nome_empresa">Nome da Empresa:</label><br>
+      <input id="nome_empresa" type="text" class="campo" name='nome_empresa' value="{{empresa.nome_empresa}}"><br>
+      <label for="tipo">Tipo da Empresa:</label><br>
+      <select name="tipo" id="tipo" class="campo">
+        <option value="{{empresa.tipo.id}}" selected>{{empresa.tipo}}</option>
+        {% for tipo in tipos %}
+            <option value="{{tipo.id}}">{{tipo.nome_tipo}}</option>
+        {% endfor %}
+      </select><br>
+      <!--<input id="tipo" type="text" class="campo" name='tipo' value="{{empresa.tipo}}">-->
+      <label for="cidade">Cidade da Empresa:</label><br>
+      <select name="cidade" id="cidade" class="campo">
+        <option value="{{empresa.cidade.id}}" selected>{{empresa.cidade}}</option>
+        {% for cidade in cidades %}
+            <option value="{{cidade.id}}">{{cidade.nome_cidade}}</option>
+        {% endfor %}
+      </select><br>
+      <!--<input id="cidade" type="text" class="campo" name='cidade' value="{{empresa.cidade}}"><br>-->
+      <label for="rua">Rua da Empresa:</label><br>
+      <input id="rua" type="text" class="campo" name='rua' value="{{empresa.rua}}"><br>
+      <label for="bairro">Bairro da Empresa:</label><br>
+      <input id="bairro" type="text" class="campo" name='bairro' value="{{empresa.bairro}}"><br>
+      <input type="number" name="id" value="{{empresa.id}}" style="display: none;">
+
+      <button type="submit" class="botao">Adicionar</button>
+    </form>
+
+</div>
+</center>
+{% endblock %}

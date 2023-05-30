@@ -12,13 +12,48 @@
                 <div class="sub-text" style="color: green;">Quantidade de produtos: {{empresa.quant_prod}}</div>
             </div>
             <div class="icone">
-                <i class="fa-solid fa-square-pen fa-3x" style="color: #969696;"></i><br>
-                <i class="fa-solid fa-trash fa-3x" style="color: #ff1a1a;"></i>
+                <a href="{% url 'empresa:altera-dados' id=empresa.id%}">
+                    <i class="fa-solid fa-square-pen fa-3x" style="color: #969696;"></i>
+                </a>
+                <br>
+                <button type="button" class="botao_modal" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+                    <i class="fa-solid fa-trash fa-3x" style="color: #ff1a1a;"></i>
+                </button>
             </div>
             <div class="icone2">
-                <i class="fa-solid fa-square-pen fa-lg" style="color: #969696;"></i><br>
-                <i class="fa-solid fa-trash fa-lg" style="color: #ff1a1a;"></i>
+                <a href="{% url 'empresa:altera-dados' id=empresa.id%}">
+                    <i class="fa-solid fa-square-pen fa-lg" style="color: #969696;"></i>
+                </a>    
+                <br>
+                <button type="button" class="botao_modal" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-trash fa-lg" style="color: #ff1a1a;"></i>
+                </button>
+               
+                
             </div>
         </div>
+
+
+        <!--JANELA MODAL-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja apagar este dado?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body ">
+          <form action="{% url 'empresa:desabilita-dado' %}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <input type="number" name="id" value="{{empresa.id}}" style="display: none;">
+                <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-danger">Apagar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endfor %}
+
+
 {% endblock %}
