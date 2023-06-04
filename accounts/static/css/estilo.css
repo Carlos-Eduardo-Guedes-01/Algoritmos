@@ -1,0 +1,288 @@
+*{
+    position: relative;
+    font-family:Helvetica;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+}
+
+div.header h3{
+    font-family:Helvetica;
+    font-weight: bold;
+}
+
+div.header{
+    font-family:Helvetica;
+    width: 105%;
+}
+input#id_imagem{
+    height: 20%;
+}
+.label{
+    font-size: 15pt;
+    font-weight: 100;
+    font-family:Helvetica;
+}
+/* configurações para todos os links */
+a{
+    text-decoration: none;
+    color: black;
+}
+/* junatar os dois */
+.juntar{
+    display: flex;
+    
+}
+/* Adiciona empresa e produtos */
+.juntar .cards{
+    width: 272px;
+    height: 246px;
+    top: 90px;
+    margin-right: 10px;
+    margin-right: 1.5%;
+    background: #D9D9D9;
+}
+
+.juntar .card-lista .text{
+    position: absolute;
+width: 1108px;
+height: 32px;
+top: 10px;
+
+font-family:Helvetica;
+font-style: normal;
+font-weight: 567;
+font-size: 34px;
+line-height: 41px;
+
+color: #000000;
+font-variation-settings: 'slnt' 0;
+}
+.juntar .card-lista{
+    position: absolute;
+    width: 100vw;
+    height: 120px;
+    top: 90px;
+    background: #D9D9D9;
+}
+.juntar .card-lista .sub-text{
+    font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 29px;
+}
+div.cards{
+    margin-right: 6%;
+}
+/* nomes adicionar produtos e empresas */
+.juntar .cards .adc_item{
+    font-family:Helvetica;
+    font-weight: 1000;
+    font-size: 24px;
+    text-decoration-line: underline;
+    margin: 0;
+    color: #000000;
+
+}
+/* estilizações gerais do corpo */
+htlm,body{
+    min-width: 100vw;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 200%;
+    overflow-x: hidden;
+    font-family:Helvetica;
+}
+/*Nome da empresa */
+
+main .logo{
+position: absolute;
+
+margin-top: -1.5%;
+}
+/* Botão de voltar */
+.voltar{
+    position: absolute;
+    left: 80%;
+    top: calc(1% - 209px/2 + 114.5px);
+    font-family:Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    text-decoration-line: underline;
+    min-width: 10% ;
+    min-width: 10vw;
+    color: #000000;
+
+}
+/* Botão de pacotes */
+.pacotes{
+    position: absolute;
+    width: 10%;
+    min-width: 10% ;
+    left: 71%;
+    top: calc(1% - 209px/2 + 114.5px);
+    font-family:Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    text-decoration-line: underline;
+
+    color: #000000;
+
+}
+div.preco{
+    width: 100%;
+}
+/* Cabeçalho do ADM */
+main{
+    position: relative;
+    flex-wrap: wrap;
+    height: 20%;
+}
+/* Botão de empresas */
+.empresas{
+    position: absolute;
+    width: 10%;
+    min-width: 10% ;
+    left: 60%;
+    top: calc(1% - 209px/2 + 114.5px);
+    font-family:Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    text-decoration-line: underline;
+
+    color: #000000;
+
+}
+
+/* Cadastro de ADM */
+section .form{
+    /*margin-top: 8%;*/
+    position: absolute;
+}
+section .link{
+    margin-top: 20%;
+    margin-top: 2%;
+    font-size: 18pt;
+    color: #535353;
+    width: 149px;
+    height: 35px;
+    border: none;
+    background: #D9D9D9;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+section .link:hover{
+    margin-top: 1.9%;
+    color: #3a3a3a;
+    background-color: #8a8a8a;
+    height: 39px;
+
+}
+form .preco{
+    margin: 0;
+    min-width: 60;
+    display: inline;
+    margin-bottom: 0;
+    display: inline-block;
+}
+/* Botão do cadastro de ADM */
+section .button{
+    margin-top: 2%;
+font-size: 18pt;
+color: #535353;
+width: 149px;
+height: 35px;
+border: none;
+background: #D9D9D9;
+border-radius: 10px;
+transition: 0.5s;
+}
+/* Transição do botão de cadastro */
+section .button:hover{
+    margin-top: 1.9%;
+    color: #3a3a3a;
+    background-color: #8a8a8a;
+    height: 39px;
+}
+div.juntar{
+    max-width: 200px;   
+    width: 100%;
+}
+/* input formulário */
+button.btn.btn-add{
+    height: 25;
+    width: 25;
+}
+select#id_preco{
+    width: 360px;
+    margin-left: 15px;
+
+}
+
+section .campo{
+    padding-left: 1%;
+    margin-bottom: 2%;
+    border: 2px solid #d9d9d9;
+    width: 20rem;
+    height: 25px;
+    font-family:Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    border-radius: 10px;
+    color: #000000;
+    background-color: #d9d9d9;
+}
+/* Nome página do Administrador */
+.header{
+    max-width: 100%;
+    font-size: 19pt;
+    font-weight: bold;
+    position: absolute;
+    width: 100%;
+    max-height: 100%;
+    top: 84px;
+    
+    color: white;
+    background: #29B9B0;
+}
+/* Área do Administrador */
+.h-15{
+    height: 15px !important;
+}
+.adm{
+
+position: relative;
+max-width: max-content;
+justify-content: center;
+display: flex;
+width:40vw;
+
+font-family: Helvetica;
+font-style: italic;
+font-weight: 900;
+font-size: 15x;
+line-height: 39px;
+/* identical to box height */
+
+text-align: center;
+text-decoration-line: underline;
+text-transform: uppercase;
+
+color: #29B9B0;
+font-variation-settings: 'slnt' -10;
+
+mix-blend-mode: darken;
+text-shadow: 1px 1px 1px #000000;
+} 
+img {
+    width: 80%;
+}

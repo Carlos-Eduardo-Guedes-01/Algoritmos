@@ -1,0 +1,20 @@
+{% extends 'base2.html'%}
+{% block content %}
+{% load static%}
+{% if msg %}
+  <div class="alert {{class}}"></div>
+   {{msg}}
+</div>
+{% endif %}
+<center>
+<div class="formulario">
+ 
+    <form action="{% url 'empresa:empresa_cad' %}" method="POST" enctype="multipart/form-data" class="form form-group">
+      {% csrf_token %}  
+      {{ form.as_p }}
+      <button type="submit" class="botao">Adicionar</button>
+    </form>
+
+</div>
+</center>
+{% endblock %}

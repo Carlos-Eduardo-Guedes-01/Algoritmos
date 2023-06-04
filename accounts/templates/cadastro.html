@@ -1,0 +1,21 @@
+{% extends 'base2.html'%}
+{% block content %}
+{% if msg %}
+<div class="alert {{class}}">
+   {{msg}}
+</div>
+{% endif %}
+<div class="formulario">
+
+  <form action="{% url 'accounts:cadastrando' %}" method="POST" enctype="multipart/form-data" class="form">
+    {% csrf_token %}  
+    <input type="text" name="user" id="nome" class="campo" placeholder="Usuário"required><br>
+    <input type="text" name="nome" id="nome" class="campo" placeholder="Nome"required><br>
+    <input type='text' name="email" id="nome" class="campo" placeholder="E-mail"required><br>
+    <input type="password"name="senha" id="nome" class="campo" placeholder="Senha"required><br>
+    <input type="password" name="senha_repeat" id="nome" class="campo" placeholder="Repetir Senha" required><br>
+    <center><button type="submit" class="botao">Cadastrar</button></center>
+  </form>
+</div>
+{% endblock %}
+
