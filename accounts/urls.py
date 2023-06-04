@@ -6,4 +6,5 @@ urlpatterns = [
     path('',inicio,name='index'),
     path('cadastra-adm/',cadastro,name='cadastro_template'),
     path('cadastrando/',cadastrando,name='cadastrando'),
+    path('home/',home,name='home'),
 ]

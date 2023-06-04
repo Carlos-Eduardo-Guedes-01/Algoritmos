@@ -29,7 +29,7 @@ def cadastrando(request):
 
         if request.POST.get('senha')==request.POST.get('senha_repeat'):
             user = User.objects.create_user(username=request.POST.get('user'),email=request.POST.get('email'), first_name=request.POST.get('nome'), password=request.POST.get('senha'))
-            query_user=User.objects.get(id=user.id)
+            query_user=User.objects.get(id=user.id) # type: ignore
             usu= administrador.objects.create(usuario=query_user)
             user.save()
             data['msg'] = 'Usuário cadastrado com sucesso! Faça Login.'
@@ -42,3 +42,10 @@ def cadastrando(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Administrador'
     return render(request,'../../accounts/templates/cadastro.html',data)
+
+def home(request):
+    data={}
+    data['nome']='Home'
+    data['titulo']='Home'
+    data['title']='Home'
+    return render(request,'../../accounts/templates/home.html',data)
