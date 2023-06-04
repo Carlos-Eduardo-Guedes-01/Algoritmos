@@ -7,4 +7,6 @@ urlpatterns = [
     path('cadastra-adm/',cadastro,name='cadastro_template'),
     path('cadastrando/',cadastrando,name='cadastrando'),
     path('home/',home,name='home'),
+    path('contato/',contato,name='contato'),
+    path('sobre/',sobre,name='sobre'),
 ]
