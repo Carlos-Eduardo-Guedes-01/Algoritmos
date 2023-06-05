@@ -46,3 +46,24 @@ def cadastrando(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Administrador'
     return render(request,'../../accounts/templates/cadastro.html',data)
+def home(request):
+    data={}
+    data['nome']='Home'
+    data['titulo']='Home'
+    data['title']='Home'
+    return render(request,'../../accounts/templates/home.html',data)
+
+
+def contato(request):
+    data={}
+    data['nome']='Contato'
+    data['titulo']='Contato'
+    data['title']='Contato'
+    return render(request,'../../accounts/templates/contato.html',data)
+
+def sobre(request):
+    data={}
+    data['nome']='Sobre'
+    data['titulo']='Sobre'
+    data['title']='Sobre'
+    return render(request,'../../accounts/templates/sobre.html',data)
