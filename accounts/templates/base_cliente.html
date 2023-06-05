@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Arquivos CSS-->
+    <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!--Arquivo JS-->
+    <script src='{% static "js/bootstrap.bundle.js" %}'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!--ícone -->
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+
+
+    
+    
+    <!--Font awesome-->
+    <script src="https://kit.fontawesome.com/c65d405071.js" crossorigin="anonymous"></script>
+    <title>{{title}}</title>
+</head>
+<body>
+    <!--Cabeçalho superior-->
+    <div class="header">
+        <div class="sup">
+            <a href="{% url 'accounts:index'%}"><div class="logo"><img src="{% static 'img/logo.png' %}" alt="Logo"></div></a>
+            <div class="text">Área do Administrador</div>
+            <!--Menu normal-->
+            <div class="menu">
+                <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
+                <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
+                <div class="item"><a href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
+                <div class="item" id="op_av">
+                    <a style="color:black;" class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Opções Avançadas
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Relatório de buscas</a></li>
+                        <li><a class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--Fechamento menu normal-->
+
+            <!--MENU DO MEDIA QUERY-->
+            <div class="menu_resp">
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <div class="item"><a href="{% url 'accounts:home'%}">Home</a></div>
+                    <div class="item"><a href="{% url 'accounts:contato'%}">Contato</a></div>
+                    <div class="item"><a href="{% url 'accounts:sobre'%}">Sobre</a></div>
+                    
+                    
+                    <div class="item">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" id="opc">
+                            Opções Avançadas
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a id="opc1" class="dropdown-item" href="#">Relatório de buscas</a></li>
+                          <li><a id="opc1" class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
+                          <div class="item"><a id="opc1" href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
+                        </ul>
+                      </li>
+                    </div>
+                </div>
+                <div id="main">
+                    <button class="openbtn" onclick="openNav()">&#9776;</button>
+                </div>
+                  
+            </div>
+            <!--FECHAMENTO DA DIV MEDIA QUERY-->
+        </div>
+        <!--Barra verde-->
+        <div class="title"> 
+    
+            {{titulo}}
+
+        </div>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+<script src="{% static 'js/jquery.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<script>
+
+    // Capturando o formulário e o campo de entrada
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    // Função para processar a pesquisa
+    function processSearch(event) {
+        event.preventDefault(); // Impedindo o envio do formulário
+
+        const query = searchInput.value; // Obtendo o valor da pesquisa
+
+        // Aqui você pode fazer o processamento da pesquisa com base na consulta 'query'
+        // Exemplo: você pode enviar uma requisição AJAX para buscar os resultados da pesquisa
+
+        // Limpando os resultados anteriores
+        searchResults.innerHTML = '';
+
+        // Exemplo: adicionando resultados de teste
+        const resultados = [
+          
+        ];
+
+        if (resultados.length === 0) {
+            const noResultsElement = document.createElement('p');
+            noResultsElement.textContent = 'Nenhum resultado encontrado.';
+            searchResults.appendChild(noResultsElement);
+        } else {
+            resultados.forEach(resultado => {
+                const resultElement = document.createElement('p');
+                resultElement.textContent = resultado;
+                searchResults.appendChild(resultElement);
+            });
+        }
+    }
+
+    // Adicionando o evento submit ao formulário
+    searchForm.addEventListener('submit', processSearch);
+</script>
+</body>
+<script>
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+document.getElementById("mySidebar").style.width = "250px";
+document.getElementById("main").style.marginRight = "250px";
+document.getElementById("main").style.display = "none";
+
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+document.getElementById("mySidebar").style.width = "0";
+document.getElementById("main").style.marginRight = "0";
+document.getElementById("main").style.display = "flex";
+}
+</script>
+</html>

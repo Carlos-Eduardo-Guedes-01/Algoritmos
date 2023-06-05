@@ -182,6 +182,7 @@ a{
     margin-right: 30px;
     
 }
+
 .icone2{
     display: none;
     flex-direction: column;
@@ -202,7 +203,7 @@ a{
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    
+    flex-wrap: wrap-reverse;
 }
 .nome{
     margin-left: 5px;
