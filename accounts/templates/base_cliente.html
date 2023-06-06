@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!--Arquivo JS-->
-    <script src='{% static "js/bootstrap.bundle.js" %}'></script>
+    <script src='{% static "accounts/static/js/bootstrap.bundle.js" %}'></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{% static 'js/popper.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/jquery.validate.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
     <!--ícone -->
     <link rel="icon" href="{% static 'img/logo.png' %}">
 
@@ -26,23 +30,15 @@
     <!--Cabeçalho superior-->
     <div class="header">
         <div class="sup">
-            <a href="{% url 'accounts:index'%}"><div class="logo"><img src="{% static 'img/logo.png' %}" alt="Logo"></div></a>
-            <div class="text">Área do Administrador</div>
+            <a href="{% url 'accounts:home'%}"><div class="logo"><img src="{% static 'img/logo.png' %}" alt="Logo"></div></a>
+            <div class="text">Bem-Vindo</div>
             <!--Menu normal-->
             <div class="menu">
-                <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
-                <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
-                <div class="item"><a href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
-                <div class="item" id="op_av">
-                    <a style="color:black;" class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        Opções Avançadas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Relatório de buscas</a></li>
-                        <li><a class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
-                    </ul>
-                </div>
+                <div class="item"><a href="{% url 'accounts:home'%}">Home</a></div>
+                <div class="item"><a href="{% url 'accounts:contato'%}">Contato</a></div>
+                <div class="item"><a href="{% url 'accounts:sobre'%}">Sobre</a></div>
             </div>
+
             <!--Fechamento menu normal-->
 
             <!--MENU DO MEDIA QUERY-->
@@ -52,19 +48,6 @@
                     <div class="item"><a href="{% url 'accounts:home'%}">Home</a></div>
                     <div class="item"><a href="{% url 'accounts:contato'%}">Contato</a></div>
                     <div class="item"><a href="{% url 'accounts:sobre'%}">Sobre</a></div>
-                    
-                    
-                    <div class="item">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" id="opc">
-                            Opções Avançadas
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a id="opc1" class="dropdown-item" href="#">Relatório de buscas</a></li>
-                          <li><a id="opc1" class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
-                          <div class="item"><a id="opc1" href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
-                        </ul>
-                      </li>
-                    </div>
                 </div>
                 <div id="main">
                     <button class="openbtn" onclick="openNav()">&#9776;</button>
@@ -74,10 +57,21 @@
             <!--FECHAMENTO DA DIV MEDIA QUERY-->
         </div>
         <!--Barra verde-->
-        <div class="title"> 
+        <div class="title2" style="color: rgb(255, 255, 255);padding-left: 3%;"> 
     
-            {{titulo}}
-
+            <div class="title2">
+                <div class="busca ">
+                <center>
+                    <form action="{% url 'produto:busca-produto' %}" method="POST" class="formulario">
+                        {% csrf_token %}
+                        <input class="campo-search" type="text" name="search" id="busca" placeholder="Faça uma busca pelos produtos desejados">
+                        <button type="submit" class="botao2">
+                            <i class="fa-solid fa-magnifying-glass" style="color: #19877E;"></i>
+                        </button>
+                    </form>
+                </center>   
+                </div>
+            </div>
         </div>
     </div>
     {% block content %}

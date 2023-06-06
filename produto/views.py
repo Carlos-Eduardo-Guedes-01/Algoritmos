@@ -4,6 +4,7 @@ from produto.forms import ProdutoForm,PrecoForm
 from .models import *
 import sys
 sys.path.append("")
+from produto.models import *
 from empresa.models import *
 from .models import preco
 import imghdr
@@ -64,3 +65,21 @@ def cad_preco(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Produtos'
     return render(request,'../../produto/templates/cadastro_prod.html',data)
+def busca_prod(request):
+    data={}
+    data['title'] = 'Cadastro de empresas'
+    data['link_form'] = '123'
+    data['title'] = 'Pesquisa'
+    #Este dado é o que fica na barra verde
+    data['titulo'] = 'Cadastro Empresa'
+    busca=request.POST.get('search')
+    data['produtos']=produtos.objects.filter(nome_produto__contains=busca)
+    return render(request,'../../produto/templates/lista_produtos.html',data)
+def secoes(request,v):
+    data={}
+    data['produtos']=produtos.objects.filter(secao__nome_secao=v)
+    data['title'] = v
+    data['link_form'] = '123'
+    #Este dado é o que fica na barra verde
+    data['titulo'] = 'Cadastro Empresa'
+    return render(request, '../../produto/templates/lista_produtos.html',data)

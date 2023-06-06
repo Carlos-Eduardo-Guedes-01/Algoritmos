@@ -4,22 +4,26 @@
 <div id="search-results" class="search-results"></div>
 <main>
   <center>
+
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
     <div class="carousel-inner">
-      <div class="h-25 carousel-item active prod">
-        <img class="d-block w-25" src="https://s1.static.brasilescola.uol.com.br/be/conteudo/images/as-frutas-sao-alimentos-importantes-para-nossa-saude-alem-serem-muito-saborosas-5bdaec2def6bb.jpg"  alt="Primeiro Slide" height="300">
+    <div class="h-25 carousel-item active prod">
+      <img class="d-block w-25 img" src="{% static 'img/logo.png' %}"  alt="Primeiro Slide" height="300">
+    </div>
+    
+      {% for prod in prods %}
+      <div class="carousel-item prod">
+        <img class="d-block w-25 img" src="{{prod.imagem.url}}" alt="Segundo Slide" height="300">
+      </div>
+      {% endfor %}
+      <!--
+      
+      <div class="carousel-item prod">
+        <img class="d-block w-25 img" src="https://deliciagostosa.com/wp-content/uploads/pontos-da-carne-1.jpg" alt="Segundo Slide" height="300">
       </div>
       <div class="carousel-item prod">
-        <img class="d-block w-25" src="https://deliciagostosa.com/wp-content/uploads/pontos-da-carne-1.jpg" alt="Segundo Slide" height="300">
-      </div>
-      <div class="carousel-item prod">
-        <img class="d-block w-25" src="https://coopera.vteximg.com.br/arquivos/ids/3150145/2255423%7C225542300.jpg?v=638002916442900000" alt="Terceiro Slide" height="300">
-      </div>
+        <img class="d-block w-25 img" src="https://coopera.vteximg.com.br/arquivos/ids/3150145/2255423%7C225542300.jpg?v=638002916442900000" alt="Terceiro Slide" height="300">
+      </div>-->
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
@@ -41,37 +45,40 @@
   <div class="d-flex justify-content-around ">
       <div class="secoes">
         <div class="secao2">
-          <a  href="outra_pagina.html"><div class='botton'>
+          <a  href="{%url 'produto:secoes' v='Higiene Pessoal'%}"><div class='botton'>
           <i class="fa-solid fa-pump-medical fa-2x" style="color: #000000;"></i> Higiene pessoal</div></a>
-          <a  href="outra_pagina.html">
+          <a  href="{%url 'produto:secoes' v='Açougue'%}">
           <div class='botton'>
             <i class="fa-solid fa-cow fa-2x" style="color: #000000;"></i>Açougue</div></a>
         </div>
       <div class="secao2">
-        <a  href="outra_pagina.html"><div class='botton'>
+        <a  href="{%url 'produto:secoes' v='Cereais'%}"><div class='botton'>
           <i class="fa-solid fa-bowl-rice fa-2x" style="color: #000000;"></i>Cereais</div></a>
-        <a  href="outra_pagina.html"><div class='botton'>
+        <a  href="{%url 'produto:secoes' v='Frios'%}"><div class='botton'>
           <i class="fa-solid fa-snowflake fa-2x" style="color: #000000;"></i>Frios</div></a>
       </div>
       <div class="secao2">
-        <a  href="outra_pagina.html"><div class='botton'>
-          <i class="fa-solid fa-carrot fa-2x" style="color: #000000;"></i>Hortifruti</div></a>
+        <div class="subsecao">
+          <a  href="{%url 'produto:secoes' v='Hortifruti'%}"><div class='botton'>
+            <i class="fa-solid fa-carrot fa-2x" style="color: #000000;"></i>Hortifruti</div></a>
 
-        <a  href="outra_pagina.html"><div class='botton'>
-          <i class="fa-solid fa-pump-soap fa-2x" style="color: #000000;"></i>Limpeza</div></a>
+          <a  href="{%url 'produto:secoes' v='Limpeza'%}"><div class='botton'>
+            <i class="fa-solid fa-pump-soap fa-2x" style="color: #000000;"></i>Limpeza</div></a>
+        </div>
       </div>
+      <hr class="hr2">
       <div class="secao2">
-        <a  href="outra_pagina.html"><div class='botton'>
+        <a  href="{% url 'produto:secoes' v='Bebidas' %}"><div class='botton'>
           <i class="fa-solid fa-champagne-glasses fa-2x" style="color: #000000;"></i>Bebidas</div></a>
       
-        <a  href="outra_pagina.html"><div class='botton'>
+        <a  href="{% url 'produto:secoes' v='Enlatados' %}"><div class='botton'>
           <img src="{% static 'img/elatados.ico' %}" alt="Enlatados" width="35px">Enlatados</div></a>
       </div>
       <div class="secao2">
-        <a  href="outra_pagina.html"><div class='botton'>
+        <a  href="{%url 'produto:secoes' v='Laticíneos' %}"><div class='botton'>
           <img src="{% static 'img/laticineos.ico' %}" alt="Laticíneos" width="40px">Laticíneos</div></a>  
       
-        <a  href="outra_pagina.html"><div class='botton'>
+        <a  href="{%url 'produto:secoes' v='Padaria'%}"><div class='botton'>
           <img src="{% static 'img/pao.ico' %}" alt="Padaria" width="40px">Padaria</div></a>  
       </div>
   <script src="{% static 'js/jquery.min.js'%}"></script>

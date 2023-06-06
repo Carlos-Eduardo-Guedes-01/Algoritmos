@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import *
+import sys
+sys.path.append("")
+from produto.models import *
 # Método de login page
 def login_page(request):
     return render(request,'../../accounts/templates/login_page.html')
@@ -51,6 +54,7 @@ def home(request):
     data['nome']='Home'
     data['titulo']='Home'
     data['title']='Home'
+    data['prods']=produtos.objects.all()
     return render(request,'../../accounts/templates/home.html',data)
 
 
