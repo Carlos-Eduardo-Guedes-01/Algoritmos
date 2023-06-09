@@ -17,17 +17,24 @@ def cad_prod(request):
         if(data['form'].is_valid()):
             nome=Empresa.objects.get(id=request.POST.get('empresa'))
             quant=nome.quant_prod
-            quant+=1
-            teste=Empresa.objects.filter(nome_empresa=nome).update(quant_prod=quant)
-            produto = data['form'].save(commit=False)
-            img = request.FILES
-            dados_img = imghdr.what(img['imagem'])
-            if dados_img == 'png' or dados_img == 'jpeg':
-                data['form'].save()
-                data['msg'] = 'Produto Cadastrado com Sucesso!'
-                data['class'] = 'alert-success'''
-            else:
-                data['msg'] = 'Formato de imagem não suportado.'
+            print(nome.pacote)
+            pac=nome.pacote.quant_prod
+            if(quant<pac):
+                quant+=1
+                teste=Empresa.objects.filter(nome_empresa=nome).update(quant_prod=quant)
+                produto = data['form'].save(commit=False)
+                img = request.FILES
+                dados_img = imghdr.what(img['imagem'])
+                if dados_img == 'png' or dados_img == 'jpeg':
+                    
+                    data['form'].save()
+                    data['msg'] = 'Produto Cadastrado com Sucesso!'
+                    data['class'] = 'alert-success'''
+                else:
+                    data['msg'] = 'Formato de imagem não suportado.'
+                    data['class'] = 'alert-danger'''
+            elif(quant>=pac):
+                data['msg'] = 'Limite do pacote atingido.'
                 data['class'] = 'alert-danger'''
         else:
             data['msg'] = 'Formulário inválido.'

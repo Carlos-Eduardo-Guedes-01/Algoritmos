@@ -81,27 +81,43 @@ a{
 .item:hover{
     font-size: 19px;
 }
+.borda{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    border: #aaaaaa outset 1px;
+    transition: 0.2s;
+}
+.borda:hover{
+    box-shadow: 3px 0 3px #aaaaaa, -3px 0 10px #aaaaaa;
+}
 .secao{
     flex-direction: row;
     display: flex;
-    width: 100%;
+    width: 100vw;
+    height: 70vh;
+    justify-content: center;
     align-items: center;
     gap: 40px;
 }
+
 .secao .op{
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 285px;
-    height: 260px;
+    height: 40vh;
     font-size: 18pt;
     text-align: center;
     color: #000000;
     text-decoration: none;
 }
 .secao .op img{
-    width: 300px;
-    height: 220px;
+    width: 180px;
+    height: 120px;
 }
 .secao a{
     text-decoration: none;
@@ -109,7 +125,7 @@ a{
 .menu_resp{
     display: none;
 }
-.formulario .campo{
+.formulario1 .campo{
     width: 32vw;
     border-radius: 10px;
     height: 5vh;
@@ -118,15 +134,14 @@ a{
     background-color: #c2c2c2;
     padding-left: 9px;
 }
-.formulario{
+.formulario1{
     display: flex;
     height: 60vh;
     width: 95vw;
     align-items: center;
     justify-content: center;
-
 }
-.formulario .botao{
+.formulario1 .botao{
     width: 130px;
     height: 30px;
     font-size: 14pt;
@@ -152,15 +167,39 @@ a{
     align-items: center;
     justify-content: center;
 }
+.geral{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .lista{
-    height: 120px;
+    border-radius: 10px;
+    height: 100px;
     display: flex;
     align-items: center;
     flex-direction: row;
     gap: 20px;
     background-color: #c2c2c2;
     margin-top: 10px;
-    width: 48vw;
+    width: 98vw;
+}
+.lista2{
+    border-radius: 10px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    background-color: #c2c2c2;
+    margin-top: 10px;
+    width: 45vw;
+}
+.img{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
 }
 .cabecalho{
     background-color: #29B9B0;
@@ -307,20 +346,7 @@ a{
     flex-direction: center;
     justify-content: center;
 }
-/*
-CSS do login
-*/
-.gradient-custom {
-    /* fallback for old browsers */
-    background: #6a11cb;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-    }
-/*Fechamento do login*/
+
 /*
 Media query
 */
@@ -348,8 +374,8 @@ Media query
         gap: 10px;
     }
 }
-@media (max-width:870px){
-    .lista{width: 88vw;
+@media (max-width:980px){
+    .lista2{width: 88vw;
     }
 }
 @media (max-width:400px){
@@ -433,8 +459,29 @@ Media query
         font-size: 14pt;
     }
 }
-
-
+/*
+Carousel
+*/
+.b{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.b2{
+    background-color: rgba(0, 0, 0, 0);
+}
+.legenda{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: left;
+    padding-left: 20px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    text-align: left;
+}
+.legenda:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 
 

@@ -14,6 +14,10 @@
       {% for prod in prods %}
       <div class="carousel-item prod">
         <img class="d-block w-25 img" src="{{prod.imagem.url}}" alt="Segundo Slide" height="300">
+        <div class="carousel-caption legenda">
+          <h5>{{prod.nome_produto}}</h5>
+          {{prod.empresa}}<br>{{prod.empresa.rua}}, {{prod.empresa.bairro}}, {{prod.empresa.cidade}}
+        </div>
       </div>
       {% endfor %}
       <!--
@@ -25,12 +29,12 @@
         <img class="d-block w-25 img" src="https://coopera.vteximg.com.br/arquivos/ids/3150145/2255423%7C225542300.jpg?v=638002916442900000" alt="Terceiro Slide" height="300">
       </div>-->
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+    <a class="carousel-control-prev b" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon b2" aria-hidden="true" style="background-color: black;"></span>
       <span class="sr-only">Anterior</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+    <a class="carousel-control-next b" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon b2" aria-hidden="true" style="background-color: black;"></span>
       <span class="sr-only">Próximo</span>
     </a>
   </div>
@@ -49,7 +53,7 @@
           <i class="fa-solid fa-pump-medical fa-2x" style="color: #000000;"></i> Higiene pessoal</div></a>
           <a  href="{%url 'produto:secoes' v='Açougue'%}">
           <div class='botton'>
-            <i class="fa-solid fa-cow fa-2x" style="color: #000000;"></i>Açougue</div></a>
+            <img src="{% static 'img/aougue.ico' %}" alt="Enlatados" width="35px">Açougue</div></a>
         </div>
       <div class="secao2">
         <a  href="{%url 'produto:secoes' v='Cereais'%}"><div class='botton'>

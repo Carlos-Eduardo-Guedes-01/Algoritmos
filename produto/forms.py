@@ -10,6 +10,7 @@ class ProdutoForm(forms.ModelForm):
                 'class':'campo','placeholder':'Nome do produto',}),
             'secao':forms.Select(attrs={ 'class': 'campo'}),
             'preco':forms.Select(attrs={'class':'campo','placeholder':'Preço do produto'}),
+            'pacote':forms.Select(attrs={'class':'campo','placeholder':'Selecione o Pacote'}),
             'empresa':forms.TextInput(attrs={
                 'class':'campo','placeholder':'Empresa Pertencente'}),
             'imagem':forms.FileInput(attrs={ 'class': 'campo'}),

@@ -1,4 +1,8 @@
 from django.db import models
+import sys
+sys.path.append("")
+from pacotes.models import Pacote
+
 class Tipos(models.Model):
    nome_tipo = models.CharField(max_length=50,default='Selecione o Tipo')
    def __str__(self) -> str:
@@ -24,6 +28,7 @@ class Empresa(models.Model):
    rua = models.CharField(max_length=255)
    bairro = models.CharField(max_length=255)
    quant_prod=models.IntegerField(blank=True, default=0)
+   pacote=models.ForeignKey(Pacote,on_delete=models.CASCADE, null=True,verbose_name='Selecione o Pacote')
    status=models.IntegerField(default=1)
    def __str__(self) -> str:
       return self.nome_empresa
