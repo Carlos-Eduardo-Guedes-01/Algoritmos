@@ -1,0 +1,75 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+<div class="produtos">
+{% for produto in produtos %}
+<!--JANELA MODAL-->
+<div class="modal" tabindex="-1" role="dialog" id="modal_1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color: red;">Atenção!!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Deseja {{msn}} o produto?</p>
+      </div>
+      <div class="modal-footer">
+        <form action="{% url 'produto:desabilita-dado' %}" method="POST">
+          {% csrf_token %}  
+        <input type="number" name="id" id="id" style="display: none;">
+        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-danger">{{btn}}</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="lista2">
+            <div class="img2">
+                <img src='{{produto.imagem.url}}' width="100" height="100" class="imgn">
+            </div>
+            <div class="dados">
+                <div class="h3">{{produto.nome_produto}}</div>
+                <div class="sub-text">Seção: {{produto.secao}}, {{produto.empresa}}</div>
+                <div class="sub-text" style="color: red;">Preço: R$ {{produto.preco}},00</div>
+            </div>
+            <!--Icone normal-->
+            <div class="icone">
+                <a href="{% url 'produto:altera-dados' id=produto.id%}">
+                    <i class="fa-solid fa-square-pen fa-3x" style="color: #969696;"></i>
+                </a>
+                <br>
+                {% if t1 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{produto.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-trash fa-3x" style="color: #ff1a1a;"></i>
+                </a>
+                {% endif %}
+                {% if t2 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{produto.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-toggle-off fa-3x" style="color: #969696;"></i>
+                </a>
+                {% endif %}
+            </div>
+            <!--Icone Media query-->
+            <div class="icone2">
+                <a href="{% url 'empresa:altera-dados' id=produto.id%}">
+                    <i class="fa-solid fa-square-pen fa-2x" style="color: #969696;"></i>
+                </a>    
+                <br>
+                {% if t1 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{produto.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-trash fa-2x" style="color: #ff1a1a;"></i>
+                </a>
+                {% endif %}
+                {% if t2 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{produto.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-toggle-off fa-2x" style="color: #969696;"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}
+</div>
+{% endblock %}

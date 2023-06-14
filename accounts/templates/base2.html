@@ -25,6 +25,7 @@
             <div class="menu">
                 <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
                 <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
+                <div class="item"><a href="{% url 'produto:lista-produtos'%}">Produtos</a></div>
                 <div class="item"><a href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
                 <div class="item" id="op_av">
                     <a style="color:black;" class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -33,6 +34,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Relatório de buscas</a></li>
                         <li><a class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
+                        <li><a class="dropdown-item" href="#">Ativar produtos</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +47,7 @@
                     <div class="item"><a href="{% url 'accounts:index'%}">HOME</a></div>
                     <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
                     <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
-                    
+                    <div class="item"><a href="{% url 'produto:lista-produtos'%}">Produtos</a></div>
                     
                     <div class="item">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" id="opc">

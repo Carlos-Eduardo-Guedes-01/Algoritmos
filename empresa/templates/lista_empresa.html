@@ -21,7 +21,7 @@
                           </div>
                           <div class="modal-footer">
                             <form action="{% url 'empresa:desabilita-dado' %}" method="POST">
-                              {% csrf_token %}  
+                              {% csrf_token %}
                             <input type="number" name="id" id="id" style="display: none;">
                             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-danger">{{btn}}</button>

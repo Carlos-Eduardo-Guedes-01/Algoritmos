@@ -10,11 +10,10 @@ class ProdutoForm(forms.ModelForm):
                 'class':'campo','placeholder':'Nome do produto',}),
             'secao':forms.Select(attrs={ 'class': 'campo'}),
             'preco':forms.Select(attrs={'class':'campo','placeholder':'Preço do produto'}),
-            'pacote':forms.Select(attrs={'class':'campo','placeholder':'Selecione o Pacote'}),
-            'empresa':forms.TextInput(attrs={
-                'class':'campo','placeholder':'Empresa Pertencente'}),
             'imagem':forms.FileInput(attrs={ 'class': 'campo'}),
-            'empresa':forms.Select(attrs={'class': 'campo'})
+            'empresa':forms.Select(attrs={'class': 'campo'}),
+            'status':forms.TextInput(attrs={'value':'1', 'readonly':'readonly', 'style':'display:none;'}),
+            'carousel':forms.RadioSelect(attrs={},choices=[('1','Sim'),('0','Não')])
         }
 class PrecoForm(forms.ModelForm):
     class Meta:

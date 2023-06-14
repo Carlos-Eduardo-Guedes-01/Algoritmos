@@ -14,9 +14,13 @@
       {% for prod in prods %}
       <div class="carousel-item prod">
         <img class="d-block w-25 img" src="{{prod.imagem.url}}" alt="Segundo Slide" height="300">
-        <div class="carousel-caption legenda">
-          <h5>{{prod.nome_produto}}</h5>
-          {{prod.empresa}}<br>{{prod.empresa.rua}}, {{prod.empresa.bairro}}, {{prod.empresa.cidade}}
+        <div class="container">
+          <div class="carousel-caption text-left legenda">
+            <div class="titulo">{{prod.nome_produto}}</div>
+            <div>{{prod.empresa}}</div>
+            <div>{{prod.empresa.rua}}, {{prod.empresa.bairro}}, {{prod.empresa.cidade}}.</div>
+            <p class="text-danger font-weight-bold">Preço: R$ {{prod.preco}},00</p>
+          </div>
         </div>
       </div>
       {% endfor %}
