@@ -1,0 +1,33 @@
+{% extends 'base2.html'%}
+{% load static %}
+{% block content %}
+{% if msg %}
+<div class="alert  {{class}}" role="alert">
+    {{msg}}
+</div>
+{% endif %}
+<center>
+<div class="formulario1">
+ 
+    <form action="{% url 'pacotes:alterando' %}" method="POST" enctype="multipart/form-data" class="form form-group">
+      {% csrf_token %}
+      <label for="nome">Nome do Pacote:</label><br>
+      <input id="nome" type="text" class="campo" name='nome' value="{{pacote.nome}}"><br>
+      <!--<input id="tipo" type="text" class="campo" name='tipo' value="{{empresa.tipo}}">-->
+      <label for="quant">Quantidade de produtos:</label><br>
+      <input id="quant" type="number" class="campo" name='quant' value="{{pacote.quant_prod}}"><br>
+      <!--<input id="cidade" type="text" class="campo" name='cidade' value="{{empresa.cidade}}"><br>-->
+      <label for="custo">Custo:</label><br>
+      <input id="custo" type="text" class="campo" name='custo' value="{{pacote.custo}}"><br>
+      <label for="desc">Descrição:</label><br>
+      <input id="desc" type="text" class="campo" name='desc' value="{{pacote.descricao}}"><br>
+      <label for="img">
+      <input id="img" type="file" class="campo" name='img'><br>
+      <input type="number" name="id" value="{{pacote.id}}" style="display: none;">
+
+      <button type="submit" class="botao">Adicionar</button>
+    </form>
+
+</div>
+</center>
+{% endblock %}

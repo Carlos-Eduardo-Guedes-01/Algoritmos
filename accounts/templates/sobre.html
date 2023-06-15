@@ -1,152 +1,22 @@
+{% extends 'base_cliente.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src='{% static "js/bootstrap.bundle.js" %}'></script>
-    <script src="https://kit.fontawesome.com/c65d405071.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="{% static 'img/logo.png' %}">
-    <title>{{title}}</title>
-</head>
-<body>
-    <div class="header">
-        <div class="sup">
-            <a href="{% url 'accounts:index'%}"><div class="logo"><img src="{% static 'img/logo.png' %}" alt="Logo"></div></a>
-            <div style="margin-right: 4%;" class="menu">
-             
-           <div class="item"><a href="{% url 'accounts:home'%}">Home</a></div>
-                    <div class="item"><a href="{% url 'accounts:contato'%}">Contato</a></div>
-             
-            </div>
-            <!--MENU DO MEDIA QUERY-->
-            <div class="menu_resp">
-                <div id="mySidebar" class="sidebar">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    
-                    <div class="item"><a href="{% url 'accounts:home'%}">Home</a></div>
-                    <div class="item"><a href="{% url 'accounts:contato'%}">Contato</a></div>
-                    
-                   
-                </div>
-                <div id="main">
-                    <button class="openbtn" onclick="openNav()">&#9776;</button>
-                </div>    
-            </div>    
-        </div>
-      </div>  
-            <div class="title"> 
-                <div style="color: rgb(255, 255, 255);padding-left: 3%;">{{title}}</div>
-                <div class="container">
-                    <div class="row">
-                      <div class="col-lg-6 mx-auto">
-                  <form id="search-form" class="form-inline my-2 my-lg-0">
-                    <div class="input-group">
-                      <input id="search-input" class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                      <button id="search-button" type="submit" class="btn btn-primary">
-                        <i id="search-button" class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </form>
-                </div>
+{% block content %}
+<div class="texto-sobre">
+    <div class="esquerda">
+        <div> Quem somos nós?</div><br>
+        <div class="div-img"><img src="{% static 'img/logo.png' %}" alt="Image" class="img-sobre"></div>
+    </div>
+    <div class="space">
+
+    </div>
+    <div class="direita">
+        
+            Somos uma empresa de desenvolvimento e 
+            divulgação de produtos com o objetivo de interligar o 
+            estabelecimento e seus clientes buscando benefícios a ambos, 
+            contribuindo assim para que ambos tenham uma ótima experiência!
+        
+    </div>
+</div>
                 
-              </div>
-            </div>
-          </div>
-          <div id="search-results" class="search-results"></div>
-
-     </div>
-</body>
-<script>
-    document.getElementById('submitBtn').addEventListener('click', function() {
-      // Obtenha os valores dos campos de entrada
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var message = document.getElementById('message').value;
-  
-      // Crie um objeto FormData com os valores dos campos de entrada
-      var formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('message', message);
-  
-      // Envie os dados para o servidor usando uma solicitação AJAX
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/biarodb@gmail.com', true);
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          // O email foi enviado com sucesso
-          alert('Email enviado com sucesso!');
-        } else {
-          // Ocorreu um erro ao enviar o email
-          alert('Erro ao enviar o email. Por favor, tente novamente mais tarde.');
-        }
-      };
-      xhr.send(formData);
-    });
-  </script>
-  
-
-
-
-
-          <script>
-            // Capturando o formulário e o campo de entrada
-            const searchForm = document.getElementById('search-form');
-            const searchInput = document.getElementById('search-input');
-            const searchResults = document.getElementById('search-results');
-      
-            // Função para processar a pesquisa
-            function processSearch(event) {
-                event.preventDefault(); // Impedindo o envio do formulário
-      
-                const query = searchInput.value; // Obtendo o valor da pesquisa
-      
-                // Limpando os resultados anteriores
-                searchResults.innerHTML = '';
-      
-                // Exemplo: adicionando resultados de teste
-                const resultados = [
-                  
-                ];
-      
-                if (resultados.length === 0) {
-                    const noResultsElement = document.createElement('p');
-                    noResultsElement.textContent = 'Nenhum resultado encontrado.';
-                    searchResults.appendChild(noResultsElement);
-                } else {
-                    resultados.forEach(resultado => {
-                        const resultElement = document.createElement('p');
-                        resultElement.textContent = resultado;
-                        searchResults.appendChild(resultElement);
-                    });
-                }
-            }
-      
-            // Adicionando o evento submit ao formulário
-            searchForm.addEventListener('submit', processSearch);
-        </script>
-      </body>
-      <script>
-      /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-      function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginRight = "250px";
-        document.getElementById("main").style.display = "none";
-      
-      }
-      
-      /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-      function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginRight = "0";
-        document.getElementById("main").style.display = "flex";
-      }
-      </script>
-</html>
+{% endblock %}

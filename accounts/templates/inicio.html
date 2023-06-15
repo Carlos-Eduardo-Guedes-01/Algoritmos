@@ -2,15 +2,21 @@
 {% load static %}
 {% block content %}
 <div class="secao">
-  <a href="{% url 'empresa:empresa_cad' %}">
+    <a href="{% url 'empresa:empresa_cad' %}" class="borda">
+        <div class="op">
+            <img src="{% static 'img/empresas.ico'%}" alt="empresas">Cadastro de empresas
+        </div>
+    </a>
+    
+  <a href="{% url 'produto:cad_prod' %}" class="borda">
       <div class="op">
-          <img src="{% static 'img/empresas.png'%}" alt="empresas">Cadastro de empresas
+          <img src="{% static 'img/produtos.ico'%}" alt="empresas">Cadastro de produtos
       </div>
   </a>
-  <a href="{% url 'produto:cad_prod' %}">
-      <div class="op">
-          <img src="{% static 'img/produtos.png'%}" alt="empresas">Cadastro de produtos
-      </div>
-  </a>
+  <a href="{% url 'pacotes:cadastro-pac' %}" class="borda">
+    <div class="op">
+        <img src="{% static 'img/pacotes.ico'%}" alt="empresas">Cadastro de pacotes
+    </div>
+</a>
 </div>
 {% endblock %}

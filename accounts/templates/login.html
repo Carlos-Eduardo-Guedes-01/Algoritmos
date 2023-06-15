@@ -1,0 +1,23 @@
+{% block content %}
+{% load static %}
+
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  {% if msg %}
+<div class="alert {{class}}">
+  {{msg}}
+</div>
+{% endif %}
+  <form method="POST">
+      {% csrf_token %}
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required>
+      <input type="submit" value="Login">
+  </form>
+</body>
+{% endblock %}

@@ -3,10 +3,12 @@ from django.urls import path
 from .views import *
 app_name='accounts'
 urlpatterns = [
-    path('',inicio,name='index'),
+    #path('',login_page,name='login_page'),
+    path('bla/',inicio,name='index'),
     path('cadastra-adm/',cadastro,name='cadastro_template'),
-    path('cadastrando/',cadastrando,name='cadastrando'),
-    path('home/',home,name='home'),
+    path('',home,name='home'),
     path('contato/',contato,name='contato'),
     path('sobre/',sobre,name='sobre'),
+    path('cadastrando/',cadastrando,name='cadastrando'),
+    path('login/',login,name='login'),
 ]

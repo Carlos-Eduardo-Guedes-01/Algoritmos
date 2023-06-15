@@ -1,5 +1,94 @@
 {% extends 'base2.html' %}
 {% load static %}
 {% block content %}
+<<<<<<< HEAD
+=======
+<div class="geral">
+{% for pacote in pacotes %}
+        <div class="lista_pac">
+          {% if pacote.img %}
+            <div class="img">
+                <img src="{{pacote.img.url}}" width="100" height="100">
+            </div>
+          {% endif %}
+          {% if not pacote.img %}
+          <div class="img">
+            <img src="{% static 'img/sem_foto.png' %}" width="100" height="100">
+          </div>
+          {% endif %}
+
+                    <!--JANELA MODAL-->
+                    <div class="modal" tabindex="-1" role="dialog" id="modal_1">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" style="color: red;">Atenção!!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p>Deseja {{msn}} o pacote?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <form action="{% url 'empresa:desabilita-dado' %}" method="POST">
+                              {% csrf_token %}  
+                            <input type="number" name="id" id="id" style="display: none;">
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-danger">{{btn}}</button>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+
+            <div class="dados">
+                <div class="h3">{{pacote.nome}}</div>
+                <div class="sub-text">Quandidade de Produtos: {{pacote.quant_prod}}</div>
+                <div class="sub-text" style="color: green;">Valor do Pacote: {{pacote.custo}}</div>
+                <div class="sub-text">Descrição: {{pacote.descricao}}</div>
+            </div>
+            <!--Icone normal-->
+            <div class="icone">
+                <a href="{% url 'pacotes:template-edita' id=pacote.id %}">
+                    <i class="fa-solid fa-square-pen fa-3x" style="color: #969696;"></i>
+                </a>
+                <br>
+                {% if t1 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{pacote.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                <!--  <i class="fa-solid fa-trash fa-3x" style="color: #ff1a1a;"></i>-->
+                </a>
+                {% endif %}
+                {% if t2 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{empresa.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-toggle-off fa-3x" style="color: #969696;"></i>
+                </a>
+                {% endif %}
+            </div>
+            <!--Icone Media query-->
+            <div class="icone2">
+                <a href="{% url 'empresa:altera-dados' id=pacote.id%}">
+                    <i class="fa-solid fa-square-pen fa-2x" style="color: #969696;"></i>
+                </a>    
+                <br>
+                {% if t1 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{pacote.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                <!--  <i class="fa-solid fa-trash fa-2x" style="color: #ff1a1a;"></i>-->
+                </a>
+                {% endif %}
+                {% if t2 %}
+                <a type="button" class="botao_modal" data-bs-toggle="modal" onclick="setaDadosModal('{{pacote.id}}')" data-bs-target="#modal_1" data-bs-whatever="@getbootstrap">
+                  <i class="fa-solid fa-toggle-off fa-2x" style="color: #969696;"></i>
+                </a>
+                {% endif %}
+                
+            </div>
+        </div>
+
+
+
+{% endfor %}
+</div>
+>>>>>>> 5faab1065d0c287f175cd1f03d3192e5a17bcd3c
 
 {% endblock %}

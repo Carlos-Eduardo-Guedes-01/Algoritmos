@@ -2,18 +2,17 @@
 {% block content %}
 {% load static%}
 {% if msg %}
-  <div class="alert {{class}}"></div>
-   {{msg}}
+<div class="alert {{class}}">
+  {{msg}}
 </div>
 {% endif %}
 <center>
-<div class="formulario">
- 
-    <form action="{% url 'empresa:empresa_cad' %}" method="POST" enctype="multipart/form-data" class="form form-group">
-      {% csrf_token %}  
-      {{ form.as_p }}
-      <button type="submit" class="botao">Adicionar</button>
-    </form>
+<div class="formulario1">
+  <form action="{% url 'empresa:empresa_cad' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}  
+    {{ form.as_p }}
+    <button type="submit" class="botao">Adicionar</button>
+  </form>
 
 </div>
 </center>
