@@ -2,8 +2,10 @@ from django.urls import reverse
 from django.shortcuts import render
 from .models import *
 from .form import DadosForm
+from django.contrib.auth.decorators import login_required
 #Variáveis não comentadas já foram explicadas
 # Método da página home
+@login_required(login_url='accounts:login')
 def template_cad(request):
     # Dicionário que para os templates
     data = {}
@@ -33,6 +35,7 @@ def template_cad(request):
     return render(request, '../../empresa/templates/cad_em.html', data)
 
 #Listagem de empresas ATIVAS
+@login_required(login_url='accounts:login')
 def lista_empresa(request):
     data={}
     data['title']='Lista de Empresas'
@@ -49,6 +52,7 @@ def lista_empresa(request):
 # Método que chama template de alterar dados da empresa que recebe o id
 # como parâmetro
 # Direciona a templates/editar_dados.html
+@login_required(login_url='accounts:login')
 def alterar_dados(request, id):
     data={}
     #Buscando dados atuais da empresa
@@ -60,6 +64,7 @@ def alterar_dados(request, id):
     data['title']='Editando Empresas'
     return render(request,'../../empresa/templates/editar_dados.html',data)
 # Método que faz o update dos dados
+@login_required(login_url='accounts:login')
 def alterando(request):
     data={}
     # Recebendo dados do formulário
@@ -86,6 +91,7 @@ def alterando(request):
     data['empresa']=Empresa.objects.get(id=id)
     return render(request,'../../empresa/templates/editar_dados.html',data)
 # Buscando template das empresas desativadas
+@login_required(login_url='accounts:login')
 def empresa_desact(request):
     data={}
     data['t2']='v'
@@ -97,6 +103,7 @@ def empresa_desact(request):
     return render(request,'../../empresa/templates/lista_empresa.html',data)
 # Alteração dos status das empresas
 # Esta função funciona tanto pra ativar quanto para desativar empresas
+@login_required(login_url='accounts:login')
 def upd_status(request):
     data={}
     # Recebendo id

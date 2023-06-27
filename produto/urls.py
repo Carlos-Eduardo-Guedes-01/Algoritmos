@@ -9,8 +9,6 @@ urlpatterns = [
     path('secoes/<str:v>/',secoes,name='secoes'),
     path('lista-produtos/',listagem,name='lista-produtos'),
     path('edita-prod/<int:id>/',template_altera,name='altera-dados'),
-    #path('alterando/<int:id>/',alterando,name='alterando'),
     path('desabilitado/',upd_status,name='desabilita-dado'),
-    #path('deactivated/',listagem_desact,name='desactvated')
-    #path('busca-autocomplete/', autocomplete,name='autocomplete'),
+    path('detalhes/<str:titulo>/<int:id>/',detalhes,name='detalhes'),
     ]

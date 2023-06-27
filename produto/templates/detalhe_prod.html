@@ -1,0 +1,23 @@
+{% extends 'base_cliente.html' %}
+{% load static %}
+{% block content %}
+<div class="total">
+    <div class="img-top">
+        <img src='{{ produto.imagem.url }}' width="200" height="200">
+    </div>
+    <div class="infor">
+        <div class="h3 tit">{{produto.nome_produto}}</div>
+        <div class="subtotal">
+            {% for empresa in empresas %}
+            <div class="empresa">
+                <div><b>{{empresa.empresa}}</b></div>
+                <div>Endereço: {{empresa.empresa.rua}}, {{empresa.empresa.bairro}}, {{empresa.empresa.cidade}}</div>
+                <div style="color: red;"><b>Valor:  R$ {{empresa.preco}}</b></div>
+            </div>
+            {% endfor %}
+        </div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+{% endblock %}

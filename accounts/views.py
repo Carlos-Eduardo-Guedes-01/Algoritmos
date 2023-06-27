@@ -1,12 +1,40 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 import sys
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,logout, login as auth_login
 sys.path.append("")
 from produto.models import *
 # Método de login page
-def login_page(request):
-    return render(request,'../../accounts/templates/login_page.html')
-
+def login_view(request):
+    data = {}
+    data['link_cad']="{% url 'accounts:cadastro_template'%}"
+    data['nome']='Login'
+    data['titulo']='Login'
+    data['title']='Login'
+    if request.POST:
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        usuario_test=User.objects.filter(email=email)
+        if usuario_test:
+            usuario=User.objects.get(email=email)
+            user = authenticate(request, username=usuario.username, password=senha)
+            if user is not None:
+                #print(jogador.saldo)
+                auth_login(request, user)
+                return redirect('accounts:index')
+            else:
+                data['msg'] = 'Senha inválida!'
+                data['class'] = 'alert-danger'
+        elif(not usuario_test):
+            data['msg'] = 'E-mail inválido!'
+            data['class'] = 'alert-danger'
+    return render(request,'../../accounts/templates/login.html',data)
+@login_required(login_url='accounts:login')
+def logout_view(request):
+    logout(request)
+    return redirect('accounts:login')
+@login_required(login_url='accounts:login')
 def inicio(request):
     data={}
     data['link_cad']="{% url 'accounts:cadastro_template'%}"
@@ -14,6 +42,7 @@ def inicio(request):
     data['titulo']='Página do ADM'
     data['title']='ADM Principal'
     return render(request,'../../accounts/templates/inicio.html',data)
+@login_required(login_url='accounts:login')
 def cadastro(request):
     data={}
     data['title']='Cadastro ADM'
@@ -21,6 +50,7 @@ def cadastro(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro ADM'
     return render(request,'../../accounts/templates/cadastro.html',data)
+@login_required(login_url='accounts:login')
 def cadastrando(request):
     titulo='Cadastro Administrador'
     data={}
@@ -49,6 +79,7 @@ def cadastrando(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Administrador'
     return render(request,'../../accounts/templates/cadastro.html',data)
+
 def home(request):
     data={}
     data['nome']='Home'

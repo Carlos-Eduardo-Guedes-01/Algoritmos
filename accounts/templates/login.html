@@ -1,0 +1,31 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="total">
+  <div class="image">
+    <img src="{% static 'img/logo.png' %}" width="200" height="200">
+  </div>
+  <div class="borda2">
+  </div>
+  <div class="form-login">
+      <h1>Login</h1>
+      {% if msg %}
+        <div class="alert {{class}}">
+          {{msg}}
+        </div>
+      {% endif %}
+      <form method="POST" class="formzin">
+        {% csrf_token %}
+        <div class="inputs">
+          <label for="email" class="label">Email:</label>
+          <input class="campos" type="email" id="email" name="email" placeholder="E-mail" required><br>
+          <label for="senha" class="label">Senha:</label>
+          <input class="campos" type="password" id="senha" name="senha" placeholder="Senha" required><br>
+          <input type="submit" value="Login" class="campos2">
+        </div>
+      </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,8 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .models import *
+from django.contrib.auth.decorators import login_required
 from .forms import PacoteForm
 # Create your views here.
+@login_required(login_url='accounts:login')
 def cad_pac(request):
     data={}
     data['title']='Cadastro de Produtos'
@@ -22,6 +24,20 @@ def cad_pac(request):
         #data['form']=PacoteForm()
     data['titulo']='Cadastro Pacotes'
     return render(request,'../../pacotes/templates/cad_pacotes.html',data)
+'''def lista_pacotes(request):
+    data={}
+    data['title']='Lista de Pacotes'
+    #Gambiarra de verificação presente no arquivo lista_empresa.html
+    data['t1']='v'
+    data['titulo']='Lista de Pacotes'
+    #Busca de empresas com status ativo e ordenado por nome_empresa
+    data['pacotes']=Pacote.objects.order_by('nome')
+    #Variável de mensagem da janela modal
+    data['msn']='desativar'
+    #Texto do botão da janela modal
+    data['btn']='Desativar'
+    return render(request,'../../pacotes/templates/lista_pacotes.html',data)'''
+@login_required(login_url='accounts:login')
 def lista_pacotes(request):
     data={}
     data['title']='Lista de Pacotes'
@@ -35,25 +51,14 @@ def lista_pacotes(request):
     #Texto do botão da janela modal
     data['btn']='Desativar'
     return render(request,'../../pacotes/templates/lista_pacotes.html',data)
-def lista_pacotes(request):
-    data={}
-    data['title']='Lista de Pacotes'
-    #Gambiarra de verificação presente no arquivo lista_empresa.html
-    data['t1']='v'
-    data['titulo']='Lista de Pacotes'
-    #Busca de empresas com status ativo e ordenado por nome_empresa
-    data['pacotes']=Pacote.objects.order_by('nome')
-    #Variável de mensagem da janela modal
-    data['msn']='desativar'
-    #Texto do botão da janela modal
-    data['btn']='Desativar'
-    return render(request,'../../pacotes/templates/lista_pacotes.html',data)
+@login_required(login_url='accounts:login')
 def template_editar(request,id):
     data={}
     #Buscando dados atuais da empresa
     data['pacote']=Pacote.objects.get(id=id)
     data['title']='Editando Pacotes '
     return render(request,'../../pacotes/templates/editar_pacotes.html',data)
+@login_required(login_url='accounts:login')
 def alterando(request):
     data={}
     # Recebendo dados do formulário

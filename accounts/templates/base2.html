@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Arquivos CSS-->
-    
+    <link rel="icon" href="{% static 'img/logo.png' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilo2.css' %}">
     <!--Arquivo JS-->
@@ -18,10 +18,13 @@
 <body>
     <!--Cabeçalho superior-->
     <div class="header">
+        
         <div class="sup">
             <a href="{% url 'accounts:index'%}"><div class="logo"><img src="{% static 'img/logo.png' %}" alt="Logo"></div></a>
+            {% if request.user.is_authenticated %}
             <div class="text">Área do Administrador</div>
             <!--Menu normal-->
+            
             <div class="menu">
                 <div class="item"><a href="{% url 'empresa:lista-empresas'%}">Empresas</a></div>
                 <div class="item"><a href="{% url 'pacotes:lista-pacotes' %}">Pacotes</a></div>
@@ -35,6 +38,7 @@
                         <li><a class="dropdown-item" href="#">Relatório de buscas</a></li>
                         <li><a class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
                         <li><a class="dropdown-item" href="#">Ativar produtos</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Sair</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +71,9 @@
                   
             </div>
             <!--FECHAMENTO DA DIV MEDIA QUERY-->
+            {% endif %}
         </div>
+        
         <!--Barra verde-->
         <div class="title"> 
     

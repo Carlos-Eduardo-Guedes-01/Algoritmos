@@ -1,13 +1,17 @@
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from produto.forms import ProdutoForm,PrecoForm
 from .models import *
+from django.shortcuts import get_object_or_404
 import sys
 sys.path.append("")
 from produto.models import *
 from empresa.models import *
+from accounts.models import *
 from .models import preco
+from django.contrib.auth.decorators import login_required
 import imghdr
+
+@login_required(login_url='accounts:login')
 def cad_prod(request):
     data={}
     data['title']='Cadastro de Produtos'
@@ -48,6 +52,7 @@ def cad_prod(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Produtos'
     return render(request,'../../produto/templates/cadastro_prod.html',data)
+@login_required(login_url='accounts:login')
 def cad_preco(request):
     data={}
     data['title']='Cadastro de Produtos'
@@ -73,16 +78,28 @@ def cad_preco(request):
     data['nome']='Voltar'
     data['titulo']='Cadastro Produtos'
     return render(request,'../../produto/templates/cadastro_prod.html',data)
+
 def busca_prod(request):
-    data={}
+    data = {}
     data['title'] = 'Cadastro de empresas'
     data['link_form'] = '123'
     data['title'] = 'Pesquisa'
-    #Este dado é o que fica na barra verde
     data['titulo'] = 'Cadastro Empresa'
-    busca=request.POST.get('search')
-    data['produtos']=produtos.objects.filter(nome_produto__contains=busca).filter(status=1)
-    return render(request,'../../produto/templates/lista_produtos.html',data)
+    busca = request.POST.get('search')
+    
+    data['produtos'] = produtos.objects.raw(
+        "SELECT produto.id, produto.nome_produto, secao.nome_secao, empresa.nome_empresa, "
+        "MAX(preco.valor) AS maior_preco, MIN(preco.valor) AS menor_preco, produto.imagem "
+        "FROM produto_produtos AS produto "
+        "INNER JOIN produto_secao AS secao ON produto.secao_id = secao.id "
+        "INNER JOIN empresa_empresa AS empresa ON produto.empresa_id = empresa.id "
+        "INNER JOIN produto_preco AS preco ON produto.preco_id = preco.id "
+        "WHERE produto.nome_produto LIKE %s AND produto.status = 1 "
+        "GROUP BY produto.nome_produto",
+        ['%' + busca + '%']
+    )
+    return render(request, '../../produto/templates/lista_produtos.html', data)
+
 def secoes(request,v):
     data={}
     data['produtos']=produtos.objects.filter(secao__nome_secao=v).filter(status=1)
@@ -97,10 +114,12 @@ def listagem(request):
     data['t1']='s'
     data['produtos']=produtos.objects.filter(status=1).order_by('nome_produto')
     return render(request, '../../produto/templates/lista_adm.html',data)
+@login_required(login_url='accounts:login')
 def upd_status(request,id):
     data={}
     data['produtos']=produtos.objects.filter(status=1).order_by('nome_produto')
     return render(request,'../../produto/templates/lista_adm.html',data)
+@login_required(login_url='accounts:login')
 def template_altera(request,id):
     data={}
     query=produtos.objects.get(id=id)
@@ -116,6 +135,17 @@ def template_altera(request,id):
             else:
                 data['msg'] = 'Produto Não Alterado.'
                 data['class'] = 'alert-danger'''
-        
+        elif(not form.is_valid()):
+            data['msg'] = "O produto não foi alterado \n Formulário inválido ." 
+            data['class'] = 'alert-danger'''
     data['id']=id
     return render(request,'../../produto/templates/edita_prod.html',data)
+def detalhes(request,titulo,id):
+    data = {}
+    data['title'] = 'Cadastro de empresas'
+    data['link_form'] = '123'
+    data['title'] = 'Pesquisa'
+    data['titulo'] = 'Cadastro Empresa'
+    data['empresas']=produtos.objects.filter(nome_produto=titulo)
+    data['produto']=get_object_or_404(produtos,pk=id)
+    return render(request,'detalhe_prod.html',data)
