@@ -430,21 +430,11 @@ Carousel
     align-items: right;
     width: 50vw;
 }
-.titulo{
-    background-color: #c2c2c2;
-    outline-color: #c2c2c2;
-    outline-style: none;
-    border:none;
-    width: 33vw;
-    text-align: left;
-}
+
 .sub-text{
     text-align: left;
 }
-.titulo:focus{
-    background-color: #c2c2c2;
-    border:none
-}
+
 .detalha{
     border: none;
     background-color: white;
@@ -485,24 +475,30 @@ Carousel
     background-color: #D9D9D9;
     width: 40vw;
 }
-.total{
+.total2{
     display: flex;
     flex-direction: row;
     justify-content: end;
     height: 80vh;
 }
 .borda2{
-    width: 0.1px;
+    width: 2px;
     height: 80vh;
+    border-left: none;
+    border-right: 1px #e7e7e7;
+    background-color: #e7e7e7;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.6);
 }
 .image{
     display: flex;
-    width: 54vw;
-
+    width: 53.99vw;
+    /**/
     justify-content: center;
     align-items: center;
-    
+    background-color: #e7e7e7;
+    /*background-image: linear-gradient(rgb(74, 253, 244), rgb(173, 253, 233));*/
 }
+
 .form-login{
     width: 46vw;
     height: 80vh;
@@ -510,7 +506,7 @@ Carousel
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #e7e7e7;
+    
 }
 .inputs{
     display: flex;

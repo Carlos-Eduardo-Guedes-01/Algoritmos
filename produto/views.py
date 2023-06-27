@@ -102,7 +102,19 @@ def busca_prod(request):
 
 def secoes(request,v):
     data={}
-    data['produtos']=produtos.objects.filter(secao__nome_secao=v).filter(status=1)
+    secao2=secao.objects.get(nome_secao=v)
+    print(secao2.id)
+    #data['produtos']=produtos.objects.filter(secao__nome_secao=v).filter(status=1)
+    data['produtos'] = produtos.objects.raw(
+        "SELECT produto.id, produto.nome_produto, secao.nome_secao, empresa.nome_empresa, "
+        "MAX(preco.valor) AS maior_preco, MIN(preco.valor) AS menor_preco, produto.imagem "
+        "FROM produto_produtos AS produto "
+        "INNER JOIN empresa_empresa AS empresa ON produto.empresa_id = empresa.id "
+        "INNER JOIN produto_preco AS preco ON produto.preco_id = preco.id "
+        "WHERE produto.secao_id = %s AND produto.status = 1 "
+        "GROUP BY produto.nome_produto",
+        [secao2.id]
+    )
     data['title'] = v
     data['link_form'] = '123'
     #Este dado é o que fica na barra verde
