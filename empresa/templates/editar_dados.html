@@ -7,7 +7,7 @@
 </div>
 {% endif %}
 <center>
-<div class="formulario1">
+<div class="formulario1" style="padding-top: 50px;">
  
     <form action="{% url 'empresa:alterando' %}" method="POST" enctype="multipart/form-data" class="form form-group">
       {% csrf_token %}
@@ -26,6 +26,13 @@
         <option value="{{empresa.cidade.id}}" selected>{{empresa.cidade}}</option>
         {% for cidade in cidades %}
             <option value="{{cidade.id}}">{{cidade.nome_cidade}}</option>
+        {% endfor %}
+      </select><br>
+      <label for="pacote">Cidade de Pacotes:</label><br>
+      <select name="pacote" id="pacote" class="campo">
+        <option value="{{empresa.pacote.id}}" selected>{{empresa.pacote}}</option>
+        {% for pacote in pacotes %}
+            <option value="{{pacote.id}}">{{pacote.nome}}</option>
         {% endfor %}
       </select><br>
       <!--<input id="cidade" type="text" class="campo" name='cidade' value="{{empresa.cidade}}"><br>-->

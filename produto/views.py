@@ -1,5 +1,5 @@
 import os
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.templatetags.static import static
 import io
 from reportlab.lib.pagesizes import letter
@@ -17,7 +17,7 @@ sys.path.append("")
 from produto.models import *
 from empresa.models import *
 from accounts.models import *
-from .models import preco
+from .models import preco,secao
 from django.contrib.auth.decorators import login_required
 import imghdr
 
@@ -32,14 +32,14 @@ def cad_prod(request):
             nome=Empresa.objects.get(id=request.POST.get('empresa'))
             quant=nome.quant_prod
             print(nome.pacote)
-            pac=nome.quant_prod
+            r1=Pacote.objects.get(nome=nome.pacote)
+            pac=r1.quant_prod
             if(quant<pac):
                 quant+=1
                 teste=Empresa.objects.filter(nome_empresa=nome).update(quant_prod=quant)
                 produto = data['form'].save(commit=False)
                 img = request.FILES
                 dados_img = imghdr.what(img['imagem'])
-                print(dados_img)
                 if dados_img == 'png' or dados_img == 'jpeg' or dados_img =='jpg' or dados_img =='webp':
                     
                     data['form'].save()
@@ -109,38 +109,43 @@ def busca_prod(request):
         ['%' + busca + '%']
     )
     return render(request, '../../produto/templates/lista_produtos.html', data)
-
-def secoes(request,v):
-    data={}
-    secao2=secao.objects.get(nome_secao=v)
-    print(secao2.id)
-    #data['produtos']=produtos.objects.filter(secao__nome_secao=v).filter(status=1)
+def secoes(request, v):
+    data = {}
+    data['title'] = 'Cadastro de empresas'
+    data['link_form'] = '123'
+    data['title'] = 'Pesquisa'
+    data['titulo'] = 'Cadastro Empresa'
+    busca = secao.objects.get(nome_secao=v)
+    print(busca)
     data['produtos'] = produtos.objects.raw(
         "SELECT produto.id, produto.nome_produto, secao.nome_secao, empresa.nome_empresa, "
         "MAX(preco.valor) AS maior_preco, MIN(preco.valor) AS menor_preco, produto.imagem "
         "FROM produto_produtos AS produto "
+        "INNER JOIN produto_secao AS secao ON produto.secao_id = secao.id "
         "INNER JOIN empresa_empresa AS empresa ON produto.empresa_id = empresa.id "
         "INNER JOIN produto_preco AS preco ON produto.preco_id = preco.id "
-        "WHERE produto.secao_id = %s AND produto.status = 1 "
+        "WHERE secao.nome_secao LIKE %s AND produto.status = 1 "
         "GROUP BY produto.nome_produto",
-        [secao2.id]
+        ['%' + busca.nome_secao + '%']
     )
-    data['title'] = v
-    data['link_form'] = '123'
-    #Este dado é o que fica na barra verde
-    data['titulo'] = 'Cadastro Empresa'
-    return render(request, '../../produto/templates/lista_produtos.html',data)
+    return render(request, '../../produto/templates/lista_produtos.html', data)
+
 def listagem(request):
     data={}
     data['adm']='ok'
+    data['btn']='Desativar'
+    data['msn']='desativar'
     data['t1']='s'
     data['produtos']=produtos.objects.filter(status=1).order_by('nome_produto')
     return render(request, '../../produto/templates/lista_adm.html',data)
 @login_required(login_url='accounts:login')
-def upd_status(request,id):
+def upd_status(request):
     data={}
-    data['produtos']=produtos.objects.filter(status=1).order_by('nome_produto')
-    return render(request,'../../produto/templates/lista_adm.html',data)
+    data['btn']='Desativar'
+    id=request.POST.get('id')
+    desct=produtos.objects.filter(id=id).update(status=0)
+    
+    return redirect('produto:lista-produtos')
 @login_required(login_url='accounts:login')
 def template_altera(request,id):
     data={}
@@ -186,7 +191,7 @@ def generate_report(request):
     "WHERE substr(relatorio.data_busca, 6, 2) = %s "
     "AND substr(relatorio.data_busca, 1, 4) = %s "
     "AND relatorio.produto_id = produto.id "
-    "GROUP BY relatorio.produto_id",
+    "GROUP BY relatorio.produto_id ORDER BY total DESC",
     [mes, ano]
 )
 

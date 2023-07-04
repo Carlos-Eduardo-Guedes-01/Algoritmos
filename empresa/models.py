@@ -27,7 +27,7 @@ class Empresa(models.Model):
    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
    rua = models.CharField(max_length=255)
    bairro = models.CharField(max_length=255)
-   quant_prod=models.IntegerField(blank=True, default=0)
+   quant_prod=models.IntegerField(default=0)
    pacote=models.ForeignKey(Pacote,on_delete=models.CASCADE, null=True,verbose_name='Selecione o Pacote')
    status=models.IntegerField(default=1)
    def __str__(self) -> str:

@@ -9,7 +9,7 @@ urlpatterns = [
     path('secoes/<str:v>/',secoes,name='secoes'),
     path('lista-produtos/',listagem,name='lista-produtos'),
     path('edita-prod/<int:id>/',template_altera,name='altera-dados'),
-    path('desabilitado/',upd_status,name='desabilita-dado'),
+    path('desabilitado/ ',upd_status,name='desabilita-dado'),
     path('detalhes/<str:titulo>/<int:id>/',detalhes,name='detalhes'),
     path('relatorio/',generate_report, name='relatorio'),
     ]

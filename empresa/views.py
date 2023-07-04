@@ -58,6 +58,7 @@ def alterar_dados(request, id):
     #Buscando dados atuais da empresa
     data['empresa']=Empresa.objects.get(id=id)
     #Busca por todos os tipos de empresas para a tag select
+    data['pacotes']=Pacote.objects.all()
     data['tipos']=Tipos.objects.all()
     #Buscando as cidades para a tag select
     data['cidades']=Cidade.objects.all()

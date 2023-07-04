@@ -135,6 +135,7 @@ a{
     padding-left: 9px;
 }
 .formulario1{
+    padding-top: 50px;
     display: flex;
     height: 60vh;
     width: 95vw;
