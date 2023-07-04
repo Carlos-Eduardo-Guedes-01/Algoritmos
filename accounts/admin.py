@@ -12,7 +12,7 @@ admin.site.register(produtos)
 admin.site.register(secao)
 admin.site.register(preco)
 admin.site.register(Pacote)
-
+admin.site.register(relatorio)
 admin.site.register(Tipos)
 admin.site.register(Cidade)
 admin.site.register(Estado)

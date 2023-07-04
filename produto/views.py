@@ -1,4 +1,14 @@
+import os
 from django.shortcuts import render
+from django.templatetags.static import static
+import io
+from reportlab.lib.pagesizes import letter
+from django.http import HttpResponse
+from datetime import date
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle,Image
+from core import settings
 from produto.forms import ProdutoForm,PrecoForm
 from .models import *
 from django.shortcuts import get_object_or_404
@@ -155,9 +165,77 @@ def template_altera(request,id):
 def detalhes(request,titulo,id):
     data = {}
     data['title'] = 'Cadastro de empresas'
+    produto = get_object_or_404(produtos, pk=id)
+    rel = relatorio(produto=produto, data_busca=date.today())
+    rel.save()
     data['link_form'] = '123'
     data['title'] = 'Pesquisa'
     data['titulo'] = 'Cadastro Empresa'
     data['empresas']=produtos.objects.filter(nome_produto=titulo)
     data['produto']=get_object_or_404(produtos,pk=id)
     return render(request,'detalhe_prod.html',data)
+def generate_report(request):
+     # Cria um file-like buffer para receber os dados do PDF
+    buffer = io.BytesIO()
+    produtos = relatorio.objects.raw(
+    "SELECT relatorio.id,relatorio.produto_id, COUNT(relatorio.produto_id) AS total "
+    "FROM produto_relatorio AS relatorio, produto_produtos AS produto "
+    "WHERE relatorio.data_busca > '2023-04-03' "
+    "AND relatorio.produto_id = produto.id "
+    "GROUP BY relatorio.produto_id"
+)
+
+    # Cria o objeto PDF usando o buffer como "arquivo"
+    doc = SimpleDocTemplate(buffer, pagesize=letter,topMargin=20)
+
+    # Lista para armazenar os elementos do relatório
+    elements = []
+    # Obtém o estilo de amostra para os estilos de parágrafo
+    styles = getSampleStyleSheet()
+    logo_path = os.path.join(settings.BASE_DIR, 'accounts', 'static', 'img', 'logo.png')
+
+    # Verifica se o arquivo da logo existe
+    if os.path.exists(logo_path):
+        logo = Image(logo_path, width=100, height=100)
+        elements.append(logo)
+    else:
+        pass
+    # Adiciona um título ao relatório
+    title_text = "Relatório de Produtos RBC"
+    title = Paragraph("<b>{}</b>".format(title_text), styles['Title'])
+    elements.append(title)
+
+    # Adiciona um parágrafo de introdução
+
+    # Adiciona uma tabela ao relatório
+    data = [['Produto', 'Quantidade']]
+    
+    for produto in produtos:
+        produto_data = [produto.produto.nome_produto, produto.total]
+        data.append(produto_data)
+
+    column_widths = [300, 100, 100]  # Defina os valores desejados para a largura de cada coluna
+
+    # Cria a tabela e define as larguras das colunas
+    table = Table(data, colWidths=column_widths)
+
+    table.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                               ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                               ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                               ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                               ('FONTSIZE', (0, 0), (-1, 0), 14),
+                               ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                               ('BACKGROUND', (0, 1), (-1, -1), colors.beige)]))
+    elements.append(table)
+
+    # Gera o relatório
+    doc.build(elements)
+
+    # Coloca o ponteiro do buffer no início
+    buffer.seek(0)
+
+    # Cria a resposta HTTP com o conteúdo do arquivo PDF
+    response = HttpResponse(buffer, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="relatorio.pdf"'
+
+    return response

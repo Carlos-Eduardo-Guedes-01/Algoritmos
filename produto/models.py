@@ -20,4 +20,8 @@ class produtos(models.Model):
     carousel=models.CharField(max_length=2, default='0')
     def __str__(self) -> str:
         return self.nome_produto
-    
+class relatorio(models.Model):
+    produto=models.ForeignKey(produtos,on_delete=models.CASCADE, default=None)
+    data_busca=models.DateField(default=None)
+    def __str__(self):
+        return self.produto.nome_produto
