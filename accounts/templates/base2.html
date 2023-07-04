@@ -12,6 +12,7 @@
     <!--Arquivo JS-->
     <script src='{% static "js/bootstrap.bundle.js" %}'></script>
     <!--Font awesome-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/c65d405071.js" crossorigin="anonymous"></script>
     <title>{{title}}</title>
 </head>
@@ -35,7 +36,8 @@
                         Opções Avançadas
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'produto:relatorio' %}">Relatório de buscas</a></li>
+                        <a id="relatorio-link" class="dropdown-item" href="#">Relatório de buscas</a>
+                        <!--<li><a class="dropdown-item" href="{% url 'produto:relatorio' %}">Relatório de buscas</a></li>-->
                         <li><a class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
                         <li><a class="dropdown-item" href="#">Ativar produtos</a></li>
                         <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Sair</a></li>
@@ -58,7 +60,7 @@
                             Opções Avançadas
                         </a>
                         <ul class="dropdown-menu">
-                          <li><a id="opc1" class="dropdown-item" href="#">Relatório de buscas</a></li>
+                          <li><a id="relatorio-link" class="dropdown-item" href="#">Relatório de buscas</a></li>
                           <li><a id="opc1" class="dropdown-item" href="{% url 'empresa:desactvated' %}">Ativar empresas</a></li>
                           <div class="item"><a id="opc1" href="{% url 'accounts:cadastro_template'%}">Cadastro ADM</a></div>
                         </ul>
@@ -84,6 +86,50 @@
     {% block content %}
 
     {% endblock %}
+    <!--
+        Modal de relatório
+    -->
+<div class="modal" id="relatorioModal" tabindex="-1" role="dialog" aria-labelledby="relatorioModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="relatorioModalLabel">Relatório de Buscas</h5>
+                <button type="button" class="btn" data-dismiss="modal" aria-label="Close" id="fecharModal" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do relatório de buscas -->
+                <!-- Você pode adicionar aqui a tabela ou qualquer outro conteúdo do relatório -->
+                <p>Selecione o mês e o ano:</p>
+                <form action="{% url 'produto:relatorio' %}" method="POST" class="">
+                    {% csrf_token %}
+                    <select name="mes" id="mes" class="form-select">
+                        {% for item in res %}
+                            <option value="{{ item.mes}}">{{ item.mes2 }}</option>
+                        {% endfor %}
+                    </select><br>
+                    <select name="ano" id="ano" class="form-select">
+                        {% for item in res2 %}
+                            <option value="{{ item.ano}}">{{ item.ano }}</option>
+                        {% endfor %}
+                    </select>
+                    
+               
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="button" class="btn btn-secondary" id="fecharModal2" data-dismiss="modal">Fechar</button>
+
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+    -->
 </body>
 <script>
 /* Código JS menu media query */
@@ -109,5 +155,25 @@ $('#modal_1').on('shown.bs.modal', function () {
     modal.find('#id').val(recipientId)
   $('#myInput').trigger('focus')
 })
+
+</script>
+<script>
+    $(document).ready(function() {
+    $('#relatorio-link').click(function() {
+        $('#relatorioModal').modal('show');
+    });
+
+    $('#fecharModal').click(function() {
+        $('#relatorioModal').modal('hide');
+    });
+    $('#fecharModal2').click(function() {
+        $('#relatorioModal').modal('hide');
+    });
+    $('#relatorioModal').on('hidden.bs.modal', function (e) {
+        $(this).find('form')[0].reset(); // Limpa os campos do formulário dentro da modal
+    });
+});
+
+
 </script>
 </html>

@@ -36,12 +36,46 @@ def logout_view(request):
     return redirect('accounts:login')
 @login_required(login_url='accounts:login')
 def inicio(request):
-    data={}
-    data['link_cad']="{% url 'accounts:cadastro_template'%}"
-    data['nome']='Cadastrar ADM'
-    data['titulo']='Página do ADM'
-    data['title']='ADM Principal'
-    return render(request,'../../accounts/templates/inicio.html',data)
+    data = {}
+    data['link_cad'] = 'accounts:cadastro_template'
+    data['nome'] = 'Cadastrar ADM'
+    data['titulo'] = 'Página do ADM'
+    data['title'] = 'ADM Principal'
+    
+    data['res'] = relatorio.objects.raw(
+        """
+    SELECT relatorio.id, strftime('%m', relatorio.data_busca) AS mes, 
+           CASE strftime('%m', relatorio.data_busca)
+               WHEN '01' THEN 'Janeiro'
+               WHEN '02' THEN 'Fevereiro'
+               WHEN '03' THEN 'Março'
+               WHEN '04' THEN 'Abril'
+               WHEN '05' THEN 'Maio'
+               WHEN '06' THEN 'Junho'
+               WHEN '07' THEN 'Julho'
+               WHEN '08' THEN 'Agosto'
+               WHEN '09' THEN 'Setembro'
+               WHEN '10' THEN 'Outubro'
+               WHEN '11' THEN 'Novembro'
+               WHEN '12' THEN 'Dezembro'
+               ELSE 'Mês inválido'
+           END AS mes2,
+           relatorio.produto_id, COUNT(relatorio.produto_id) AS total
+    FROM produto_relatorio AS relatorio
+    GROUP BY mes;
+"""
+    )
+    data['res2'] = relatorio.objects.raw(
+        """
+    SELECT relatorio.id, strftime('%Y', relatorio.data_busca) AS ano, 
+           relatorio.produto_id
+    FROM produto_relatorio AS relatorio
+    GROUP BY ano;
+"""
+    )
+    
+    return render(request, 'inicio.html', data)
+
 @login_required(login_url='accounts:login')
 def cadastro(request):
     data={}

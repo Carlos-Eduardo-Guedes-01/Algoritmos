@@ -176,13 +176,18 @@ def detalhes(request,titulo,id):
     return render(request,'detalhe_prod.html',data)
 def generate_report(request):
      # Cria um file-like buffer para receber os dados do PDF
+     
     buffer = io.BytesIO()
+    mes=request.POST.get('mes')
+    ano=request.POST.get('ano')
     produtos = relatorio.objects.raw(
-    "SELECT relatorio.id,relatorio.produto_id, COUNT(relatorio.produto_id) AS total "
+    "SELECT relatorio.id, relatorio.produto_id, COUNT(relatorio.produto_id) AS total "
     "FROM produto_relatorio AS relatorio, produto_produtos AS produto "
-    "WHERE relatorio.data_busca > '2023-04-03' "
+    "WHERE substr(relatorio.data_busca, 6, 2) = %s "
+    "AND substr(relatorio.data_busca, 1, 4) = %s "
     "AND relatorio.produto_id = produto.id "
-    "GROUP BY relatorio.produto_id"
+    "GROUP BY relatorio.produto_id",
+    [mes, ano]
 )
 
     # Cria o objeto PDF usando o buffer como "arquivo"
@@ -225,7 +230,9 @@ def generate_report(request):
                                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
                                ('FONTSIZE', (0, 0), (-1, 0), 14),
                                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-                               ('BACKGROUND', (0, 1), (-1, -1), colors.beige)]))
+                               ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+                               ('ALIGN', (-1, 1), (-1, -1), 'CENTER'),
+                               ]))
     elements.append(table)
 
     # Gera o relatório
